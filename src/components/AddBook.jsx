@@ -52,17 +52,8 @@ function AddBook({ handleAdd, handleShowAddForm, adding }) {
         closeForm();
     };
 
-    const emptyForm = () => {
-        setNewBookTitle("");
-        setNewBookAuthor("");
-        setNewBookGenre("");
-        setNewBookPublisher("");
-        setNewBookStatus("");
-    };
-
     const closeForm = () => {
         handleShowAddForm();
-        emptyForm();
     };
     return (
         <ThemeProvider theme={theme}>

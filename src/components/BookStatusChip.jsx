@@ -12,7 +12,7 @@ const WillMount = (bookStatus, setMenuIndex) => {
         });
     }, []);
 };
-function BookStatusChip({ book, handleStatusUpdate }) {
+function BookStatusChip({ book, handleStatusUpdate, size, className }) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
     const [anchorBookId, setAnchorBookId] = useState(null);
@@ -65,9 +65,10 @@ function BookStatusChip({ book, handleStatusUpdate }) {
         <>
             <Chip
                 onClick={(e) => openSelectStatus(e, book.id)}
-                className={pillColor(book.status)}
+                className={pillColor(book.status) + " " + className}
                 classes={{ clickable: pillColor(book.status, false) }}
                 label={book.status}
+                size={size}
             />
             <Menu
                 anchorEl={anchorEl}

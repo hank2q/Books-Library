@@ -31,10 +31,23 @@ const useStyles = makeStyles((theme) => ({
     },
     mainContSettings: {
         backgroundColor: theme.palette.primary.light,
-        padding: 16,
-        paddingBottom: 0,
+        padding: theme.spacing(1.5, 1.75),
         display: "flex",
         flexDirection: "row-reverse",
+    },
+    selectAll: {
+        padding: 0,
+        marginRight: 8,
+        color: "#fff",
+    },
+    selectedCount: {
+        ...theme.typography.button,
+        color: "#fff",
+        padding: 6,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexGrow: 0.1,
     },
     viewButtons: { flexGrow: 1 },
     navTitle: { flexGrow: 1 },
@@ -43,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
     },
     tableHead: {
         backgroundColor: theme.palette.primary.light,
+        borderTop: `1px solid ${theme.palette.grey[700]}`,
     },
     headCell: {
         color: theme.palette.getContrastText(theme.palette.primary.light),
@@ -131,7 +145,6 @@ const useStyles = makeStyles((theme) => ({
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
         transition: theme.transitions.create("width"),
         width: "100%",
@@ -158,6 +171,42 @@ const useStyles = makeStyles((theme) => ({
         "&:hover": {
             backgroundColor: theme.palette.error.dark,
         },
+    },
+    viewBtnActive: {
+        backgroundColor: theme.palette.secondary.main,
+        "&:hover": {
+            backgroundColor: theme.palette.secondary.dark,
+        },
+    },
+    bookCardsCont: {
+        padding: 0,
+        marginTop: 0,
+    },
+    cardCont: {
+        padding: 8,
+        paddingBottom: 4,
+    },
+    cardText: {
+        flexGrow: 1,
+    },
+    cardTitle: {
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        display: "-webkit-box",
+        WebkitLineClamp: 1,
+        WebkitBoxOrient: "vertical",
+    },
+    cardMedia: {
+        paddingTop: "140%",
+    },
+    cardAction: {
+        display: "flex",
+        justifyContent: "space-between",
+        paddingTop: 4,
+        flexWrap: "wrap",
+    },
+    checkBox: {
+        padding: 0,
     },
 }));
 

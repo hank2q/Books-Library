@@ -6,6 +6,8 @@ const Books = [
         genre: "Fiction",
         publisher: "HarperCollins",
         status: "Pending",
+        image:
+            "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1466865542l/18144590._SY475_.jpg",
     },
 
     {
@@ -15,6 +17,8 @@ const Books = [
         genre: "Fiction/ Literature",
         publisher: "Vintage",
         status: "Reading",
+        image:
+            "https://images-na.ssl-images-amazon.com/images/I/515rkrJc3zL._SX322_BO1,204,203,200_.jpg",
     },
 
     {
@@ -33,6 +37,8 @@ const Books = [
         genre: "Fiction/ Fantasy",
         publisher: "Harper Collins UK",
         status: "Wish List",
+        image:
+            "https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103573.jpg",
     },
 ];
 

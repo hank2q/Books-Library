@@ -1,16 +1,20 @@
 import React from "react";
 import { useState } from "react";
-import { Container, Box, ButtonGroup, Button } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import BooksTable from "./BooksTable";
+import BooksCards from "./BooksCards";
 import useStyles from "../styles";
 import Books from "../data";
 import AddBook from "./AddBook";
 import Collapse from "@material-ui/core/Collapse";
 import MainSettings from "./MainSettings";
+import { BookSelectionProvider } from "../contexts/BookSelectionContext";
+
 function Main() {
     const classes = useStyles();
     const [showAddForm, setShowAddForm] = useState(false);
     const [books, setBooks] = useState([...Books]);
+    const [tableView, setTableView] = useState(false);
 
     const toggleAddForm = () => {
         setShowAddForm(!showAddForm);
@@ -37,19 +41,33 @@ function Main() {
 
     return (
         <Container maxWidth="md" className={classes.mainContainer}>
-            <MainSettings toggleAddForm={toggleAddForm} showAddForm={showAddForm} />
-            <Collapse in={showAddForm}>
-                <AddBook
-                    handleAdd={addBook}
-                    adding={showAddForm}
-                    handleShowAddForm={toggleAddForm}
+            <BookSelectionProvider>
+                <MainSettings
+                    tableView={tableView}
+                    toggleTableView={setTableView}
+                    toggleAddForm={toggleAddForm}
+                    showAddForm={showAddForm}
+                    books={books}
                 />
-            </Collapse>
-            <BooksTable
-                books={books}
-                classes={classes}
-                handleStatusUpdate={updateBookStatus}
-            />
+                <Collapse in={showAddForm} mountOnEnter unmountOnExit>
+                    <AddBook
+                        handleAdd={addBook}
+                        adding={showAddForm}
+                        handleShowAddForm={toggleAddForm}
+                    />
+                </Collapse>
+                {tableView ? (
+                    <BooksTable
+                        books={books}
+                        handleStatusUpdate={updateBookStatus}
+                    />
+                ) : (
+                    <BooksCards
+                        handleStatusUpdate={updateBookStatus}
+                        books={books}
+                    />
+                )}
+            </BookSelectionProvider>
         </Container>
     );
 }
