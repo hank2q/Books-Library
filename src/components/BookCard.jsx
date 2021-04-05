@@ -1,6 +1,3 @@
-import React from "react";
-import { useState, useContext } from "react";
-import { SelectBookContext } from "../contexts/BookSelectionContext";
 import defaultBook from "../assets/defaultBook.svg";
 import {
     Card,
@@ -10,22 +7,13 @@ import {
     CardMedia,
     Typography,
     Box,
-    Checkbox,
 } from "@material-ui/core";
 import BookStatusChip from "./BookStatusChip";
 import useStyles from "../styles";
-
+import SelectBook from "./SelectBook";
+import BookMenu from "./BookMenu";
 function BookCard({ book, handleStatusUpdate }) {
     const classes = useStyles();
-    const [booksSelected, setBooksSelected] = useContext(SelectBookContext);
-
-    const handleCheck = (e, id) => {
-        if (e.target.checked && !booksSelected.includes(id)) {
-            setBooksSelected((prev) => [...prev, id]);
-        } else {
-            setBooksSelected((prev) => prev.filter((ID) => ID !== id));
-        }
-    };
     return (
         <Card>
             <CardActionArea
@@ -58,13 +46,8 @@ function BookCard({ book, handleStatusUpdate }) {
                     handleStatusUpdate={handleStatusUpdate}
                     book={book}
                 />
-                <Checkbox
-                    checked={booksSelected.includes(book.id)}
-                    onChange={(e) => {
-                        handleCheck(e, book.id);
-                    }}
-                    className={classes.checkBox}
-                />
+                <SelectBook bookId={book.id} />
+                <BookMenu bookId={book.id} />
             </CardActions>
         </Card>
     );

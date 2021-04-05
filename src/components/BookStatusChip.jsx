@@ -72,7 +72,7 @@ function BookStatusChip({ book, handleStatusUpdate, size, className }) {
             />
             <Menu
                 anchorEl={anchorEl}
-                keepMounted
+                keepMounted={false}
                 open={Boolean(anchorEl)}
                 onClose={closeStatusSelect}
             >
@@ -91,8 +91,3 @@ function BookStatusChip({ book, handleStatusUpdate, size, className }) {
 }
 
 export default BookStatusChip;
-
-/* <MenuItem onClick={updateStatus}>Wish List</MenuItem>
-                <MenuItem onClick={updateStatus}>Pending</MenuItem>
-                <MenuItem onClick={updateStatus}>Reading</MenuItem>
-                <MenuItem onClick={updateStatus}>Finished</MenuItem> */

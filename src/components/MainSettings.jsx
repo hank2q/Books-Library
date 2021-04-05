@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { SelectBookContext } from "../contexts/BookSelectionContext";
 import { Box, Button, ButtonGroup, Tooltip, Checkbox } from "@material-ui/core";
 import ViewHeadlineIcon from "@material-ui/icons/ViewHeadline";

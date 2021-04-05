@@ -61,6 +61,10 @@ const useStyles = makeStyles((theme) => ({
     headCell: {
         color: theme.palette.getContrastText(theme.palette.primary.light),
     },
+    tableCheckBox: {
+        padding: 0,
+        marginRight: 5,
+    },
     finished: {
         backgroundColor: theme.palette.success.main,
         color: theme.palette.getContrastText(theme.palette.success.main),
