@@ -9,6 +9,8 @@ import AddBook from "./AddBook";
 import Collapse from "@material-ui/core/Collapse";
 import MainSettings from "./MainSettings";
 import { BookSelectionProvider } from "../contexts/BookSelectionContext";
+import { BookMenuProvider } from "../contexts/BookMenuContext";
+import BookMenu from "./BookMenu";
 
 function Main() {
     const classes = useStyles();
@@ -56,17 +58,20 @@ function Main() {
                         handleShowAddForm={toggleAddForm}
                     />
                 </Collapse>
-                {tableView ? (
-                    <BooksTable
-                        books={books}
-                        handleStatusUpdate={updateBookStatus}
-                    />
-                ) : (
-                    <BooksCards
-                        handleStatusUpdate={updateBookStatus}
-                        books={books}
-                    />
-                )}
+                <BookMenuProvider>
+                    {tableView ? (
+                        <BooksTable
+                            books={books}
+                            handleStatusUpdate={updateBookStatus}
+                        />
+                    ) : (
+                        <BooksCards
+                            handleStatusUpdate={updateBookStatus}
+                            books={books}
+                        />
+                    )}
+                    <BookMenu />
+                </BookMenuProvider>
             </BookSelectionProvider>
         </Container>
     );

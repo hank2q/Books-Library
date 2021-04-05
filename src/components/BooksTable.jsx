@@ -27,6 +27,12 @@ function BooksTable({ books, handleStatusUpdate }) {
                             <TableCell className={classes.headCell} align="right">
                                 Status
                             </TableCell>
+                            <TableCell
+                                className={
+                                    classes.headCell + " " + classes.optionCell
+                                }
+                                align="right"
+                            ></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

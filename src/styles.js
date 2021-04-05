@@ -6,11 +6,15 @@ const useStyles = makeStyles((theme) => ({
     mainContainer: {
         backgroundColor: theme.palette.background.paper,
         height: "auto",
+        maxWidth: 1050,
         padding: 16,
         marginTop: 8,
     },
     tableCont: {
         marginTop: 0,
+    },
+    optionCell: {
+        width: 24,
     },
     addBookContainer: {
         backgroundColor: theme.palette.primary.light,
@@ -186,6 +190,7 @@ const useStyles = makeStyles((theme) => ({
         padding: 0,
         marginTop: 0,
     },
+    card: { minWidth: 150 },
     cardCont: {
         padding: 8,
         paddingBottom: 4,
@@ -211,6 +216,9 @@ const useStyles = makeStyles((theme) => ({
     },
     checkBox: {
         padding: 0,
+    },
+    menuBtn: {
+        padding: 2,
     },
 }));
 

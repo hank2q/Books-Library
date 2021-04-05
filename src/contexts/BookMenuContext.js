@@ -1,1 +1,50 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
+import { SelectBookContext } from "../contexts/BookSelectionContext";
+
+export const BookMenuContext = createContext();
+
+export function BookMenuProvider({ children }) {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorId, setAnchorId] = useState(null);
+    const [booksSelected, setBooksSelected] = useContext(SelectBookContext);
+
+    const openBookMenu = (e, bookId) => {
+        setAnchorEl(e.currentTarget);
+        setAnchorId(bookId);
+    };
+    const closeBookMenu = () => {
+        setAnchorEl(null);
+    };
+    const handleDelete = () => {
+        console.log("Delete");
+    };
+    const handleSelecting = () => {
+        if (!booksSelected.includes(anchorId)) {
+            setBooksSelected((prev) => [...prev, anchorId]);
+        }
+    };
+    const menuItemClick = (index) => {
+        switch (index) {
+            case 0:
+                handleSelecting();
+                break;
+            case 1:
+                console.log("editing");
+                break;
+            case 2:
+                handleDelete();
+                break;
+            default:
+                console.log("No item");
+                break;
+        }
+        closeBookMenu();
+    };
+    return (
+        <BookMenuContext.Provider
+            value={[anchorEl, openBookMenu, closeBookMenu, menuItemClick]}
+        >
+            {children}
+        </BookMenuContext.Provider>
+    );
+}

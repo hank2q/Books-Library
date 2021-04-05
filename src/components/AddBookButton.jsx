@@ -1,4 +1,4 @@
-import { Button, IconButton } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import useStyles from "../styles";

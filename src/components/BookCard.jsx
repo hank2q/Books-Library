@@ -11,14 +11,15 @@ import {
 import BookStatusChip from "./BookStatusChip";
 import useStyles from "../styles";
 import SelectBook from "./SelectBook";
-import BookMenu from "./BookMenu";
+import BookMenuBtn from "./BookMenuBtn";
+
 function BookCard({ book, handleStatusUpdate }) {
     const classes = useStyles();
     return (
-        <Card>
+        <Card className={classes.card}>
             <CardActionArea
                 onClick={() => {
-                    console.log("ccard");
+                    console.log("card action");
                 }}
             >
                 <CardMedia
@@ -40,14 +41,14 @@ function BookCard({ book, handleStatusUpdate }) {
                     </Box>
                 </CardContent>
             </CardActionArea>
-            <CardActions className={classes.cardAction}>
+            <CardActions disableSpacing className={classes.cardAction}>
+                <SelectBook bookId={book.id} />
                 <BookStatusChip
                     size="small"
                     handleStatusUpdate={handleStatusUpdate}
                     book={book}
                 />
-                <SelectBook bookId={book.id} />
-                <BookMenu bookId={book.id} />
+                <BookMenuBtn bookId={book.id} />
             </CardActions>
         </Card>
     );
