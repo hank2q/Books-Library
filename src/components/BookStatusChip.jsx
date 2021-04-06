@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Chip, Menu, MenuItem } from "@material-ui/core";
 import useStyles from "../styles";
+import { BooksContext } from "../contexts/BooksContext";
 
 const statuses = ["Wish List", "Pending", "Reading", "Finished"];
+
 const WillMount = (bookStatus, setMenuIndex) => {
     useEffect(() => {
         statuses.forEach((status, index) => {
@@ -12,8 +14,10 @@ const WillMount = (bookStatus, setMenuIndex) => {
         });
     }, []);
 };
-function BookStatusChip({ book, handleStatusUpdate, size, className }) {
+
+function BookStatusChip({ book, size, className }) {
     const classes = useStyles();
+    const [, , , updateBook] = useContext(BooksContext);
     const [anchorEl, setAnchorEl] = useState(null);
     const [anchorBookId, setAnchorBookId] = useState(null);
     const [menuIndex, setMenuIndex] = useState(0);
@@ -30,7 +34,7 @@ function BookStatusChip({ book, handleStatusUpdate, size, className }) {
     const updateStatus = (event, index) => {
         setMenuIndex(index);
         let newStatus = event.currentTarget.innerText;
-        handleStatusUpdate(anchorBookId, newStatus);
+        updateBook(anchorBookId, "status", newStatus);
         closeStatusSelect();
     };
 

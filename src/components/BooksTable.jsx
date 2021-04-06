@@ -9,7 +9,7 @@ import {
 import useStyles from "../styles";
 import BookRow from "./BookRow";
 
-function BooksTable({ books, handleStatusUpdate }) {
+function BooksTable({ books }) {
     const classes = useStyles();
     return (
         <>
@@ -37,11 +37,7 @@ function BooksTable({ books, handleStatusUpdate }) {
                     </TableHead>
                     <TableBody>
                         {books.map((book) => (
-                            <BookRow
-                                key={book.id}
-                                book={book}
-                                handleStatusUpdate={handleStatusUpdate}
-                            />
+                            <BookRow key={book.id} book={book} />
                         ))}
                     </TableBody>
                 </Table>

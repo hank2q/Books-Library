@@ -1,11 +1,12 @@
 import { useContext } from "react";
-import { SelectBookContext } from "../contexts/BookSelectionContext";
 import { Box, Button, ButtonGroup, Tooltip, Checkbox } from "@material-ui/core";
 import ViewHeadlineIcon from "@material-ui/icons/ViewHeadline";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import { BooksContext } from "../contexts/BooksContext";
+import { SelectBookContext } from "../contexts/BookSelectionContext";
+import { withStyles } from "@material-ui/core/styles";
 import AddBookButton from "./AddBookButton";
 import useStyles from "../styles";
-import { withStyles } from "@material-ui/core/styles";
 
 const DarkTooltip = withStyles((theme) => ({
     arrow: {
@@ -16,14 +17,9 @@ const DarkTooltip = withStyles((theme) => ({
     },
 }))(Tooltip);
 
-function MainSettings({
-    toggleAddForm,
-    showAddForm,
-    tableView,
-    toggleTableView,
-    books,
-}) {
+function MainSettings({ toggleAddForm, showAddForm, tableView, toggleTableView }) {
     const classes = useStyles();
+    const [books] = useContext(BooksContext);
     const [booksSelected, setBooksSelected] = useContext(SelectBookContext);
 
     const handleSwitch = (e) => {

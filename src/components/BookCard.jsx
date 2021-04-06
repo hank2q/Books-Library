@@ -13,7 +13,7 @@ import useStyles from "../styles";
 import SelectBook from "./SelectBook";
 import BookMenuBtn from "./BookMenuBtn";
 
-function BookCard({ book, handleStatusUpdate }) {
+function BookCard({ book }) {
     const classes = useStyles();
     return (
         <Card className={classes.card}>
@@ -42,12 +42,10 @@ function BookCard({ book, handleStatusUpdate }) {
                 </CardContent>
             </CardActionArea>
             <CardActions disableSpacing className={classes.cardAction}>
-                <SelectBook bookId={book.id} />
-                <BookStatusChip
-                    size="small"
-                    handleStatusUpdate={handleStatusUpdate}
-                    book={book}
-                />
+                <div>
+                    <SelectBook bookId={book.id} />
+                    <BookStatusChip size="small" book={book} />
+                </div>
                 <BookMenuBtn bookId={book.id} />
             </CardActions>
         </Card>

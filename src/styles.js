@@ -69,6 +69,10 @@ const useStyles = makeStyles((theme) => ({
         padding: 0,
         marginRight: 5,
     },
+    tableBtn: {
+        padding: 5,
+        fontWeight: "bold",
+    },
     finished: {
         backgroundColor: theme.palette.success.main,
         color: theme.palette.getContrastText(theme.palette.success.main),
@@ -197,6 +201,7 @@ const useStyles = makeStyles((theme) => ({
     },
     cardText: {
         flexGrow: 1,
+        minHeight: 38,
     },
     cardTitle: {
         overflow: "hidden",

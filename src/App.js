@@ -4,6 +4,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 import useStyles from "./styles";
 import Palette from "./components/Palette";
+import { BooksProvider } from "./contexts/BooksContext";
 const theme = createMuiTheme({
     palette: {
         primary: {
@@ -31,8 +32,10 @@ function App() {
         <div className={classes.root}>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <NavBar />
-                <Main />
+                <BooksProvider>
+                    <NavBar />
+                    <Main />
+                </BooksProvider>
             </ThemeProvider>
         </div>
     );

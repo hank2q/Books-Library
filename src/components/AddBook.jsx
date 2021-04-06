@@ -1,5 +1,6 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { BooksContext } from "../contexts/BooksContext";
 import {
     TextField,
     FormControl,
@@ -21,8 +22,9 @@ const theme = createMuiTheme({
     },
 });
 
-function AddBook({ handleAdd, handleShowAddForm, adding }) {
+function AddBook({ handleShowAddForm }) {
     const classes = useStyles();
+    const [, addBook] = useContext(BooksContext);
     const [noTitle, setNoTitle] = useState(false);
     const [newBookTitle, setNewBookTitle] = useState("");
     const [newBookAuthor, setNewBookAuthor] = useState("");
@@ -48,7 +50,7 @@ function AddBook({ handleAdd, handleShowAddForm, adding }) {
         if (!newBook.status) {
             newBook.status = "Pending";
         }
-        handleAdd(newBook);
+        addBook(newBook);
         closeForm();
     };
 
