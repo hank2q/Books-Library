@@ -4,6 +4,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 import useStyles from "./styles";
 import Palette from "./components/Palette";
+import { BrowserRouter as Router } from "react-router-dom";
 import { BooksProvider } from "./contexts/BooksContext";
 const theme = createMuiTheme({
     palette: {
@@ -31,11 +32,13 @@ function App() {
     return (
         <div className={classes.root}>
             <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <BooksProvider>
-                    <NavBar />
-                    <Main />
-                </BooksProvider>
+                <Router>
+                    <CssBaseline />
+                    <BooksProvider>
+                        <NavBar />
+                        <Main />
+                    </BooksProvider>
+                </Router>
             </ThemeProvider>
         </div>
     );

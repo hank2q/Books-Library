@@ -1,19 +1,32 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Collapse from "@material-ui/core/Collapse";
 import AddBook from "./AddBook";
 import BooksTable from "./BooksTable";
 import BooksCards from "./BooksCards";
 import BookMenu from "./BookMenu";
+import BookStatusMenu from "./BookStatusMenu";
 import MainSettings from "./MainSettings";
 import { BooksContext } from "../contexts/BooksContext";
 import { BookSelectionProvider } from "../contexts/BookSelectionContext";
 import { BookMenuProvider } from "../contexts/BookMenuContext";
+import { BookStatusProvider } from "../contexts/BookStatusContext";
 
 function BooksViews() {
     const [showAddForm, setShowAddForm] = useState(false);
     const [books] = useContext(BooksContext);
     const [tableView, setTableView] = useState(false);
+
+    useEffect(() => {
+        const view = localStorage.getItem("tableView");
+        if (view) {
+            setTableView(JSON.parse(view));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("tableView", JSON.stringify(tableView));
+    });
 
     const toggleAddForm = () => {
         setShowAddForm(!showAddForm);
@@ -32,12 +45,15 @@ function BooksViews() {
                     <AddBook handleShowAddForm={toggleAddForm} />
                 </Collapse>
                 <BookMenuProvider>
-                    {tableView ? (
-                        <BooksTable books={books} />
-                    ) : (
-                        <BooksCards books={books} />
-                    )}
-                    <BookMenu />
+                    <BookStatusProvider>
+                        {tableView ? (
+                            <BooksTable books={books} />
+                        ) : (
+                            <BooksCards books={books} />
+                        )}
+                        <BookMenu />
+                        <BookStatusMenu />
+                    </BookStatusProvider>
                 </BookMenuProvider>
             </BookSelectionProvider>
         </>

@@ -1,41 +1,24 @@
-import { useState, useEffect, useContext } from "react";
-import { Chip, Menu, MenuItem } from "@material-ui/core";
+import { useEffect, useContext } from "react";
+import { Chip } from "@material-ui/core";
 import useStyles from "../styles";
-import { BooksContext } from "../contexts/BooksContext";
+import {
+    BookStatusContext,
+    AnchorElContext,
+    MenuIndexContext,
+    StatusesContext,
+} from "../contexts/BookStatusContext";
 
-const statuses = ["Wish List", "Pending", "Reading", "Finished"];
-
-const WillMount = (bookStatus, setMenuIndex) => {
-    useEffect(() => {
-        statuses.forEach((status, index) => {
-            if (status === bookStatus) {
-                setMenuIndex(index);
-            }
-        });
-    }, []);
-};
-
-function BookStatusChip({ book, size, className }) {
+function BookStatusChip({ book }) {
     const classes = useStyles();
-    const [, , , updateBook] = useContext(BooksContext);
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [anchorBookId, setAnchorBookId] = useState(null);
-    const [menuIndex, setMenuIndex] = useState(0);
-    WillMount(book.status, setMenuIndex);
-    const openSelectStatus = (event, bookId) => {
-        setAnchorEl(event.currentTarget);
-        setAnchorBookId(bookId);
-    };
-    const closeStatusSelect = () => {
-        setAnchorEl(null);
-        setAnchorBookId(null);
-    };
+    const [, setAnchorBook] = useContext(BookStatusContext);
+    const [, setAnchorEl] = useContext(AnchorElContext);
+    const [, setMenuIndex] = useContext(MenuIndexContext);
+    const statuses = useContext(StatusesContext);
 
-    const updateStatus = (event, index) => {
-        setMenuIndex(index);
-        let newStatus = event.currentTarget.innerText;
-        updateBook(anchorBookId, "status", newStatus);
-        closeStatusSelect();
+    const openSelectStatus = (event) => {
+        setAnchorEl(event.currentTarget);
+        setAnchorBook(book);
+        setMenuIndex(statuses.indexOf(book.status));
     };
 
     const pillColor = (status, base = true) => {
@@ -68,28 +51,12 @@ function BookStatusChip({ book, size, className }) {
     return (
         <>
             <Chip
-                onClick={(e) => openSelectStatus(e, book.id)}
-                className={pillColor(book.status) + " " + className}
+                onClick={openSelectStatus}
+                className={pillColor(book.status)}
                 classes={{ clickable: pillColor(book.status, false) }}
                 label={book.status}
-                size={size}
+                size="small"
             />
-            <Menu
-                anchorEl={anchorEl}
-                keepMounted={false}
-                open={Boolean(anchorEl)}
-                onClose={closeStatusSelect}
-            >
-                {statuses.map((status, index) => (
-                    <MenuItem
-                        key={index}
-                        selected={index === menuIndex}
-                        onClick={(event) => updateStatus(event, index)}
-                    >
-                        {status}
-                    </MenuItem>
-                ))}
-            </Menu>
         </>
     );
 }

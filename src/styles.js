@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
     optionCell: {
         width: 24,
+        paddingLeft: 0,
     },
     addBookContainer: {
         backgroundColor: theme.palette.primary.light,
@@ -70,8 +71,13 @@ const useStyles = makeStyles((theme) => ({
         marginRight: 5,
     },
     tableBtn: {
-        padding: 5,
+        padding: 6,
         fontWeight: "bold",
+        "&:hover, &$focusVisible": {
+            backgroundColor: theme.palette.grey[200],
+        },
+        borderRadius: 3,
+        transition: "background-color .2s ease",
     },
     finished: {
         backgroundColor: theme.palette.success.main,

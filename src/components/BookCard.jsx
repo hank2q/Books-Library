@@ -17,11 +17,7 @@ function BookCard({ book }) {
     const classes = useStyles();
     return (
         <Card className={classes.card}>
-            <CardActionArea
-                onClick={() => {
-                    console.log("card action");
-                }}
-            >
+            <CardActionArea href={"/book/" + book.id}>
                 <CardMedia
                     className={classes.cardMedia}
                     image={book.image || defaultBook}
@@ -44,7 +40,7 @@ function BookCard({ book }) {
             <CardActions disableSpacing className={classes.cardAction}>
                 <div>
                     <SelectBook bookId={book.id} />
-                    <BookStatusChip size="small" book={book} />
+                    <BookStatusChip book={book} />
                 </div>
                 <BookMenuBtn bookId={book.id} />
             </CardActions>

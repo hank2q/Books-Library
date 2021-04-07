@@ -10,7 +10,9 @@ function BookRow({ book }) {
         <TableRow>
             <TableCell component="td" scope="row">
                 <SelectBook bookId={book.id} className={classes.tableCheckBox} />
-                <ButtonBase className={classes.tableBtn}>{book.title}</ButtonBase>
+                <ButtonBase href={"/book/" + book.id} className={classes.tableBtn}>
+                    {book.title}
+                </ButtonBase>
             </TableCell>
             <TableCell component="td" align="right">
                 {book.author}
