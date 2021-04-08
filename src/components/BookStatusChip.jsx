@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { Chip } from "@material-ui/core";
 import useStyles from "../styles";
 import {
@@ -22,30 +22,18 @@ function BookStatusChip({ book }) {
     };
 
     const pillColor = (status, base = true) => {
-        if (status === "Finished") {
-            if (base) {
-                return classes.finished;
-            } else {
-                return classes.finishedClickable;
-            }
-        } else if (status === "Reading") {
-            if (base) {
-                return classes.reading;
-            } else {
-                return classes.readingClickable;
-            }
-        } else if (status === "Wish List") {
-            if (base) {
-                return classes.wish;
-            } else {
-                return classes.wishClickable;
-            }
-        } else if (status === "Pending") {
-            if (base) {
-                return classes.pending;
-            } else {
-                return classes.pendingClickable;
-            }
+        const index = statuses.indexOf(status);
+        switch (index) {
+            case 0:
+                return base ? classes.wish : classes.wishClickable;
+            case 1:
+                return base ? classes.pending : classes.pendingClickable;
+            case 2:
+                return base ? classes.reading : classes.readingClickable;
+            case 3:
+                return base ? classes.finished : classes.finishedClickable;
+            default:
+                return base ? classes.pending : classes.pendingClickable;
         }
     };
     return (

@@ -22,6 +22,11 @@ export function BookMenuProvider({ children }) {
             setBooksSelected((prev) => [...prev, anchorId]);
         }
     };
+
+    const handleDelete = () => {
+        deleteBook(anchorId);
+        setBooksSelected((prev) => prev.filter((ID) => ID !== anchorId));
+    };
     const menuItemClick = (index) => {
         switch (index) {
             case 0:
@@ -31,7 +36,7 @@ export function BookMenuProvider({ children }) {
                 console.log("editing");
                 break;
             case 2:
-                deleteBook(anchorId);
+                handleDelete();
                 break;
             default:
                 console.log("No item");

@@ -1,5 +1,13 @@
 import { useContext } from "react";
-import { Box, Button, ButtonGroup, Tooltip, Checkbox } from "@material-ui/core";
+import {
+    Box,
+    Button,
+    ButtonGroup,
+    Tooltip,
+    Checkbox,
+    IconButton,
+} from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
 import ViewHeadlineIcon from "@material-ui/icons/ViewHeadline";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import { BooksContext } from "../contexts/BooksContext";
@@ -19,8 +27,13 @@ const DarkTooltip = withStyles((theme) => ({
 
 function MainSettings({ toggleAddForm, showAddForm, tableView, toggleTableView }) {
     const classes = useStyles();
-    const [books] = useContext(BooksContext);
+    const [books, , deleteBook] = useContext(BooksContext);
     const [booksSelected, setBooksSelected] = useContext(SelectBookContext);
+
+    const deleteSelected = () => {
+        booksSelected.forEach((id) => deleteBook(id));
+        setBooksSelected([]);
+    };
 
     const handleSwitch = (e) => {
         e.target.checked
@@ -31,18 +44,23 @@ function MainSettings({ toggleAddForm, showAddForm, tableView, toggleTableView }
         <Box className={classes.mainContSettings} component="div">
             <AddBookButton handleShowAddForm={toggleAddForm} adding={showAddForm} />
             {booksSelected.length > 0 ? (
-                <>
-                    <div className={classes.selectedCount}>
-                        <Checkbox
-                            checked={booksSelected.length === books.length}
-                            onChange={(e) => handleSwitch(e)}
-                            className={classes.selectAll}
-                            color="default"
-                            indeterminate={booksSelected.length < books.length}
-                        />
-                        {booksSelected.length} selected
-                    </div>
-                </>
+                <Box className={classes.selectedCount}>
+                    <Checkbox
+                        checked={booksSelected.length === books.length}
+                        onChange={(e) => handleSwitch(e)}
+                        className={classes.selectAll}
+                        color="default"
+                        indeterminate={booksSelected.length < books.length}
+                    />
+                    {booksSelected.length} selected
+                    <IconButton
+                        aria-label="delete"
+                        style={{ marginLeft: 10, padding: 0, color: "#fff" }}
+                        onClick={deleteSelected}
+                    >
+                        <DeleteIcon />
+                    </IconButton>
+                </Box>
             ) : (
                 ""
             )}
