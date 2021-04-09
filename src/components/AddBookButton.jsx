@@ -6,7 +6,7 @@ import useStyles from "../styles";
 function AddBookButton({ handleShowAddForm, adding }) {
     const matches = useMediaQuery((theme) => theme.breakpoints.up("sm"));
     const classes = useStyles();
-    const btnIcon = (adding) => {
+    const btnIcon = () => {
         return (
             <CloseIcon
                 style={
@@ -20,7 +20,7 @@ function AddBookButton({ handleShowAddForm, adding }) {
             />
         );
     };
-    const btnProps = (adding) => {
+    const btnProps = () => {
         return {
             variant: "contained",
             disableElevation: true,
@@ -29,8 +29,8 @@ function AddBookButton({ handleShowAddForm, adding }) {
         };
     };
     return (
-        <Button {...btnProps(adding)} endIcon={matches ? btnIcon(adding) : ""}>
-            {matches ? (adding ? "Close" : "Add Book") : btnIcon(adding)}
+        <Button {...btnProps()} endIcon={matches ? btnIcon() : ""}>
+            {matches ? (adding ? "Close" : "Add Book") : btnIcon()}
         </Button>
     );
 }

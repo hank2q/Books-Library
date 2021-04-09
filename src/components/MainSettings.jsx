@@ -55,7 +55,7 @@ function MainSettings({ toggleAddForm, showAddForm, tableView, toggleTableView }
                     {booksSelected.length} selected
                     <IconButton
                         aria-label="delete"
-                        style={{ marginLeft: 10, padding: 0, color: "#fff" }}
+                        style={{ marginLeft: 10, padding: 6, color: "#fff" }}
                         onClick={deleteSelected}
                     >
                         <DeleteIcon />

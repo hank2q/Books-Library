@@ -9,10 +9,9 @@ export function BooksProvider({ children }) {
         let newId = 0;
         books.forEach((book) => {
             if (book.id > newId) {
-                newId = book.id;
+                newId = book.id + 1;
             }
         });
-        newBook.id = newId + 1;
         setBooks([...books, newBook]);
     };
 

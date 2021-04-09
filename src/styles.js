@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
     selectedCount: {
         ...theme.typography.button,
         color: "#fff",
-        padding: 6,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -230,6 +229,28 @@ const useStyles = makeStyles((theme) => ({
     },
     menuBtn: {
         padding: 2,
+    },
+    bookCont: {
+        display: "flex",
+        paddingTop: 12,
+        marginBottom: 15,
+        flexDirection: "row",
+    },
+    bookImg: {
+        width: "25%",
+    },
+    bookBox: {
+        marginLeft: 25,
+        flexGrow: 1,
+        padding: 12,
+    },
+    bookBoxSm: {
+        padding: 12,
+        margin: "12px 0px",
+    },
+    bookInfoLable: { fontWeight: "300", color: theme.palette.grey[600] },
+    bookDesc: {
+        padding: 12,
     },
 }));
 
