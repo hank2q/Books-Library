@@ -13,18 +13,17 @@ import BookStatusChip from "./BookStatusChip";
 import useStyles from "../styles";
 import SelectBook from "./SelectBook";
 import BookMenuBtn from "./BookMenuBtn";
-import { BookPageContext, PagesContext } from "../contexts/PagesContext";
+import { PagesContext } from "../contexts/PagesContext";
 
 function BookCard({ book }) {
     const classes = useStyles();
-    const [, setPage] = useContext(PagesContext);
-    const [, setBookPage] = useContext(BookPageContext);
+    const [, goToBook] = useContext(PagesContext);
+
     return (
         <Card className={classes.card}>
             <CardActionArea
                 onClick={() => {
-                    setPage("book");
-                    setBookPage(book);
+                    goToBook(book);
                 }}
             >
                 <CardMedia

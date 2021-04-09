@@ -76,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: theme.palette.grey[200],
         },
         borderRadius: 3,
+        textAlign: "left",
         transition: "background-color .2s ease",
     },
     finished: {

@@ -4,11 +4,10 @@ import BookStatusChip from "./BookStatusChip";
 import useStyles from "../styles";
 import SelectBook from "./SelectBook";
 import BookMenuBtn from "./BookMenuBtn";
-import { BookPageContext, PagesContext } from "../contexts/PagesContext";
+import { PagesContext } from "../contexts/PagesContext";
 function BookRow({ book }) {
     const classes = useStyles();
-    const [, setPage] = useContext(PagesContext);
-    const [, setBookPage] = useContext(BookPageContext);
+    const [, goToBook] = useContext(PagesContext);
 
     return (
         <TableRow>
@@ -16,8 +15,7 @@ function BookRow({ book }) {
                 <SelectBook bookId={book.id} className={classes.tableCheckBox} />
                 <ButtonBase
                     onClick={() => {
-                        setPage("book");
-                        setBookPage(book);
+                        goToBook(book);
                     }}
                     className={classes.tableBtn}
                 >
