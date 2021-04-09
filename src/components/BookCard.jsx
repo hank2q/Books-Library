@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import defaultBook from "../assets/defaultBook.svg";
 import {
     Card,
@@ -12,12 +13,20 @@ import BookStatusChip from "./BookStatusChip";
 import useStyles from "../styles";
 import SelectBook from "./SelectBook";
 import BookMenuBtn from "./BookMenuBtn";
+import { BookPageContext, PagesContext } from "../contexts/PagesContext";
 
 function BookCard({ book }) {
     const classes = useStyles();
+    const [, setPage] = useContext(PagesContext);
+    const [, setBookPage] = useContext(BookPageContext);
     return (
         <Card className={classes.card}>
-            <CardActionArea href={"/book/" + book.id}>
+            <CardActionArea
+                onClick={() => {
+                    setPage("book");
+                    setBookPage(book);
+                }}
+            >
                 <CardMedia
                     className={classes.cardMedia}
                     image={book.image || defaultBook}

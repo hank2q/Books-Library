@@ -5,17 +5,8 @@ import BookContLg from "./BookContLg";
 import BookContSm from "./BookContSm";
 import BookDesc from "./BookDesc";
 import BookSettings from "./BookSettings";
-function Book({ match }) {
+function Book({ book }) {
     const matches = useMediaQuery((theme) => theme.breakpoints.up("sm"));
-    const [books] = useContext(BooksContext);
-    const [book, setBook] = useState({});
-    useEffect(() => {
-        books.forEach((b) => {
-            if (b.id === parseInt(match.params.id)) {
-                setBook(b);
-            }
-        });
-    });
     return (
         <>
             <BookSettings />

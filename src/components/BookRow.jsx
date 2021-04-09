@@ -1,16 +1,26 @@
+import { useContext } from "react";
 import { TableRow, TableCell, ButtonBase } from "@material-ui/core";
 import BookStatusChip from "./BookStatusChip";
 import useStyles from "../styles";
 import SelectBook from "./SelectBook";
 import BookMenuBtn from "./BookMenuBtn";
-
+import { BookPageContext, PagesContext } from "../contexts/PagesContext";
 function BookRow({ book }) {
     const classes = useStyles();
+    const [, setPage] = useContext(PagesContext);
+    const [, setBookPage] = useContext(BookPageContext);
+
     return (
         <TableRow>
             <TableCell component="td" scope="row">
                 <SelectBook bookId={book.id} className={classes.tableCheckBox} />
-                <ButtonBase href={"/book/" + book.id} className={classes.tableBtn}>
+                <ButtonBase
+                    onClick={() => {
+                        setPage("book");
+                        setBookPage(book);
+                    }}
+                    className={classes.tableBtn}
+                >
                     {book.title}
                 </ButtonBase>
             </TableCell>

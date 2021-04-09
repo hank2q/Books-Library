@@ -1,8 +1,13 @@
+import { useContext } from "react";
 import useStyles from "../../styles";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 import { Box, IconButton } from "@material-ui/core";
+import { BookPageContext, PagesContext } from "../../contexts/PagesContext";
+
 function BookSettings() {
     const classes = useStyles();
+    const [, setBookPage] = useContext(BookPageContext);
+    const [, setPage] = useContext(PagesContext);
 
     return (
         <Box
@@ -12,7 +17,8 @@ function BookSettings() {
         >
             <IconButton
                 onClick={() => {
-                    window.history.back();
+                    setPage("books");
+                    setBookPage(null);
                 }}
                 style={{ padding: 6 }}
             >
