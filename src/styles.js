@@ -236,9 +236,6 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 15,
         flexDirection: "row",
     },
-    bookImg: {
-        width: "25%",
-    },
     bookBox: {
         marginLeft: 25,
         flexGrow: 1,

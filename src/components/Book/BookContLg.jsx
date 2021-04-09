@@ -7,11 +7,14 @@ function BookContLg({ book }) {
     const classes = useStyles();
     return (
         <Box className={classes.bookCont}>
-            <img
-                className={classes.bookImg + " MuiPaper-rounded MuiPaper-elevation1"}
-                src={book.image || defaultBook}
-                alt="Book Cover"
-            />
+            <div style={{ width: "25%" }}>
+                <img
+                    className={"MuiPaper-rounded MuiPaper-elevation1"}
+                    style={{ display: "block", width: "100%", height: "auto" }}
+                    src={book.image || defaultBook}
+                    alt="Book Cover"
+                />
+            </div>
             <Paper className={classes.bookBox}>
                 <Typography variant="h4">{book.title}</Typography>
                 <br />
