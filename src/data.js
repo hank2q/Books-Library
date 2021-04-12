@@ -2,8 +2,8 @@ const Books = [
     {
         id: 1,
         title: "The Alchemist",
-        author: "Paulo Coelho",
-        genre: "Fiction",
+        author: ["Paulo Coelho"],
+        genre: ["Fiction"],
         publisher: "HarperCollins",
         status: "Pending",
         image:
@@ -13,8 +13,8 @@ const Books = [
     {
         id: 2,
         title: "The Stranger",
-        author: "Albert Camus",
-        genre: "Fiction/ Literature",
+        author: ["Albert Camus"],
+        genre: ["Fiction", "Literature"],
         publisher: "Vintage",
         status: "Reading",
         image:
@@ -24,8 +24,8 @@ const Books = [
     {
         id: 3,
         title: "1984",
-        author: "George Orwell",
-        genre: "Fiction",
+        author: ["George Orwell"],
+        genre: ["Fiction"],
         publisher: "Finger Print",
         status: "Finished",
     },
@@ -33,8 +33,8 @@ const Books = [
     {
         id: 4,
         title: "The Lord of the Rings: The Fellowship of the Ring",
-        author: "J. R. R. Tolkien",
-        genre: "Fiction/ Fantasy",
+        author: ["J. R. R. Tolkien"],
+        genre: ["Fiction", "Fantasy"],
         publisher: "Harper Collins UK",
         status: "Wish List",
         image:

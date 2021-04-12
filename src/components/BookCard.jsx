@@ -40,7 +40,7 @@ function BookCard({ book }) {
                             {book.title}
                         </Typography>
                         <Typography className={classes.cardTitle} variant="inherit">
-                            {book.author}
+                            {book.author.join(", ")}
                         </Typography>
                     </Box>
                 </CardContent>

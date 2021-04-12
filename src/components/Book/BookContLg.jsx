@@ -22,9 +22,13 @@ function BookContLg({ book }) {
                     <BookInfo
                         lineHeight="2.7"
                         lable={"Author"}
-                        value={book.author}
+                        value={book.author && book.author.join(", ")}
                     />
-                    <BookInfo lineHeight="2.7" lable={"Genre"} value={book.genre} />
+                    <BookInfo
+                        lineHeight="2.7"
+                        lable={"Genre"}
+                        value={book.genre && book.genre.join("/ ")}
+                    />
                     <BookInfo
                         lineHeight="2.7"
                         lable={"Publisher"}

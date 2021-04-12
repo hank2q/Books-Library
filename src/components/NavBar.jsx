@@ -3,7 +3,7 @@ import Logo from "../assets/Logo.svg";
 import { Typography, AppBar, Toolbar, ButtonBase } from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import useStyles from "../styles";
-import SearchBook from "./SearchBook";
+import SearchBook from "./Search/SearchBook";
 import { PagesContext } from "../contexts/PagesContext";
 
 function NavBar() {

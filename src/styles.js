@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     tableBtn: {
         padding: 6,
         fontWeight: "bold",
-        "&:hover, &$focusVisible": {
+        "&:hover": {
             backgroundColor: theme.palette.grey[200],
         },
         borderRadius: 3,
@@ -135,6 +135,11 @@ const useStyles = makeStyles((theme) => ({
             color: theme.palette.getContrastText(theme.palette.grey[400]),
         },
     },
+    searchCont: {
+        [theme.breakpoints.down("sm")]: {
+            flexGrow: 1,
+        },
+    },
     search: {
         position: "relative",
         borderRadius: theme.shape.borderRadius,
@@ -145,9 +150,9 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 0,
         width: "100%",
         [theme.breakpoints.up("sm")]: {
-            marginLeft: theme.spacing(1),
             width: "auto",
         },
+        display: "flex",
     },
     searchIcon: {
         padding: theme.spacing(0, 2),
@@ -158,19 +163,39 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         justifyContent: "center",
     },
+    clearSearch: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        marginRight: 12,
+        width: 24,
+    },
     inputRoot: {
         color: "inherit",
+        width: "100%",
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
         paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-        transition: theme.transitions.create("width"),
+        transition: theme.transitions.create("width", { delay: "0.1s" }),
         width: "100%",
         [theme.breakpoints.up("sm")]: {
             width: "12ch",
-            "&:focus": {
-                width: "20ch",
-            },
+        },
+    },
+    inputFocused: {
+        [theme.breakpoints.up("sm")]: {
+            width: "40ch",
+        },
+    },
+    searchSuggest: {
+        position: "absolute",
+        width: "29.5%",
+        top: "85%",
+        right: "1.5%",
+        [theme.breakpoints.down("sm")]: {
+            width: "97%",
+            top: "100%",
         },
     },
     statusSelect: {

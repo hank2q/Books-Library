@@ -1,5 +1,3 @@
-import { useEffect, useContext, useState } from "react";
-import { BooksContext } from "../../contexts/BooksContext";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import BookContLg from "./BookContLg";
 import BookContSm from "./BookContSm";
@@ -11,7 +9,7 @@ function Book({ book }) {
         <>
             <BookSettings />
             {matches ? <BookContLg book={book} /> : <BookContSm book={book} />}
-            <BookDesc book={book} />
+            <BookDesc description={book.description} />
         </>
     );
 }

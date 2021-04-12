@@ -21,13 +21,13 @@ function BookContSm({ book }) {
                         lineHeight="2.5"
                         variant="body1"
                         lable={"Author"}
-                        value={book.author}
+                        value={book.author && book.author.join(", ")}
                     />
                     <BookInfo
                         lineHeight="2"
                         variant="body2"
                         lable={"Genre"}
-                        value={book.genre}
+                        value={book.genre && book.genre.join("/ ")}
                     />
                     <BookInfo
                         lineHeight="2"
