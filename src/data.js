@@ -28,6 +28,8 @@ const Books = [
         genre: ["Fiction"],
         publisher: "Finger Print",
         status: "Finished",
+        image:
+            "https://images-na.ssl-images-amazon.com/images/I/51K84pomCRL._SX305_BO1,204,203,200_.jpg",
     },
 
     {

@@ -23,10 +23,10 @@ function BookRow({ book }) {
                 </ButtonBase>
             </TableCell>
             <TableCell component="td" align="right">
-                {book.author.join(", ")}
+                {book.author?.join(", ")}
             </TableCell>
             <TableCell component="td" align="right">
-                {book.genre && book.genre.join("/ ")}
+                {book.genre?.join("/ ")}
             </TableCell>
             <TableCell component="td" align="right">
                 <BookStatusChip book={book} />
