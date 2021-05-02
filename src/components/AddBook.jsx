@@ -36,8 +36,8 @@ function AddBook({ handleShowAddForm }) {
         e.preventDefault();
         const newBook = {
             title: newBookTitle,
-            author: newBookAuthor,
-            genre: newBookGenre,
+            author: [newBookAuthor],
+            genre: [newBookGenre],
             publisher: newBookPublisher,
             status: newBookStatus,
         };

@@ -16,14 +16,14 @@ function SearchSuggestion({ myBooks, googleBooks, queryState }) {
                     position: "relative",
                 }}
             >
-                <li>
+                <li key="library">
                     <SuggestionItems
                         heading={"My Library"}
                         books={myBooks}
                         queryState={queryState}
                     />
                 </li>
-                <li>
+                <li key="googleApi">
                     <SuggestionItems
                         heading={"Google Books"}
                         books={googleBooks}

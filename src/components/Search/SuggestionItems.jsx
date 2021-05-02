@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import defaultBook from "../../assets/defaultBook.svg";
 import {
+    List,
     ListItem,
     ListItemText,
     ListItemAvatar,
@@ -15,8 +16,8 @@ function SuggestionItems({ books, heading, queryState }) {
     const [, setQuery] = queryState;
 
     return (
-        <>
-            <ListSubheader style={{ backgroundColor: "#fff" }}>
+        <List key={heading}>
+            <ListSubheader key={heading + "1"} style={{ backgroundColor: "#fff" }}>
                 {heading}
             </ListSubheader>
             <Divider />
@@ -42,11 +43,11 @@ function SuggestionItems({ books, heading, queryState }) {
                     </ListItem>
                 ))
             ) : (
-                <ListItem>
+                <ListItem key={heading + "2"}>
                     <Typography variant="subtitle2">No Books Found</Typography>
                 </ListItem>
             )}
-        </>
+        </List>
     );
 }
 
