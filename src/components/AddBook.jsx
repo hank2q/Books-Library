@@ -9,9 +9,13 @@ import {
     MenuItem,
     Button,
     Grid,
+    ListItemText,
+    Divider,
 } from "@material-ui/core";
+import { Autocomplete } from "@material-ui/lab";
 import useStyles from "../styles";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import useSearch from "../hooks/useSearch";
 
 const theme = createMuiTheme({
     palette: {
@@ -27,10 +31,14 @@ function AddBook({ handleShowAddForm }) {
     const [, addBook] = useContext(BooksContext);
     const [noTitle, setNoTitle] = useState(false);
     const [newBookTitle, setNewBookTitle] = useState("");
+    const [titleValue, setTitleValue] = useState("");
     const [newBookAuthor, setNewBookAuthor] = useState("");
     const [newBookGenre, setNewBookGenre] = useState("");
     const [newBookPublisher, setNewBookPublisher] = useState("");
+    const [newBookDescription, setNewBookDescription] = useState("");
     const [newBookStatus, setNewBookStatus] = useState("");
+    const [gBooks, setGBooks] = useState([]);
+    const goog = useSearch(setGBooks);
 
     const submitBook = (e) => {
         e.preventDefault();
@@ -54,6 +62,23 @@ function AddBook({ handleShowAddForm }) {
         closeForm();
     };
 
+    const autoFill = (result) => {
+        if (result) {
+            setNewBookAuthor(result.author?.join("/ "));
+            setNewBookGenre(result.genre?.join("/ "));
+            setNewBookPublisher(result.publisher);
+            setNewBookDescription(result.description);
+        } else {
+            setNewBookTitle("");
+            setTitleValue(null);
+            setNewBookAuthor([]);
+            setNewBookGenre([]);
+            setNewBookPublisher("");
+            setNewBookDescription("");
+            setNewBookStatus("");
+        }
+    };
+
     const closeForm = () => {
         handleShowAddForm();
     };
@@ -63,15 +88,48 @@ function AddBook({ handleShowAddForm }) {
                 <form className={classes.addBookForm} onSubmit={submitBook}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} sm={6}>
-                            <TextField
-                                fullWidth
-                                value={newBookTitle}
-                                onChange={(e) => setNewBookTitle(e.target.value)}
-                                color="primary"
-                                id="book-title"
-                                label="Book Title"
-                                helperText={noTitle ? "Enter book title" : ""}
-                                error={noTitle}
+                            <Autocomplete
+                                id="book-title-fill"
+                                options={gBooks}
+                                getOptionLabel={(option) => option.title}
+                                freeSolo
+                                renderOption={(option) => (
+                                    <>
+                                        <ListItemText
+                                            style={{
+                                                padding: 0,
+                                                margin: 0,
+                                                borderBottom: "1px solid grey",
+                                                paddingBottom: 10,
+                                            }}
+                                            primary={option.title}
+                                            secondary={option.author}
+                                        />
+                                    </>
+                                )}
+                                value={titleValue}
+                                onChange={(event, newValue) => {
+                                    setTitleValue(newValue);
+                                    autoFill(newValue);
+                                }}
+                                inputValue={newBookTitle}
+                                onInputChange={(event, newInputValue) => {
+                                    setNewBookTitle(newInputValue);
+                                    goog(newInputValue);
+                                }}
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...params}
+                                        fullWidth
+                                        color="primary"
+                                        id="book-title"
+                                        label="Title"
+                                        helperText={
+                                            noTitle ? "Enter book title" : ""
+                                        }
+                                        error={noTitle}
+                                    />
+                                )}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -104,11 +162,22 @@ function AddBook({ handleShowAddForm }) {
                                 label="Publisher"
                             />
                         </Grid>
+                        <Grid item xs={12} sm={12}>
+                            <TextField
+                                fullWidth
+                                value={newBookDescription}
+                                multiline
+                                onChange={(e) =>
+                                    setNewBookDescription(e.target.value)
+                                }
+                                color="primary"
+                                id="book-description"
+                                label="Description"
+                            />
+                        </Grid>
                         <Grid item xs={12} sm={6}>
                             <FormControl className={classes.statusSelect}>
-                                <InputLabel id="demo-simple-select-label">
-                                    Status
-                                </InputLabel>
+                                <InputLabel id="book-status">Status</InputLabel>
                                 <Select
                                     labelId="status-select-label"
                                     id="status-select"
@@ -129,6 +198,7 @@ function AddBook({ handleShowAddForm }) {
                     </Grid>
                     <FormControl className={classes.formButtons}>
                         <Button onClick={closeForm}>Cancel</Button>
+                        <Button onClick={() => autoFill()}>Clear</Button>
                         <Button type="submit">Save</Button>
                     </FormControl>
                 </form>
@@ -138,3 +208,20 @@ function AddBook({ handleShowAddForm }) {
 }
 
 export default AddBook;
+/*
+<TextField
+fullWidth
+color="primary"
+id="book-title"
+label="Book Title"
+value={newBookTitle}
+onChange={(e) => {
+    setNewBookTitle(e.target.value);
+    goog(e.target.value);
+}}
+helperText={
+    noTitle ? "Enter book title" : ""
+}
+error={noTitle}
+/>
+*/
