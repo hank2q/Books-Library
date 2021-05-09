@@ -39,7 +39,10 @@ function SuggestionItems({ books, heading, queryState }) {
                                 alt="Book Cover"
                             />
                         </ListItemAvatar>
-                        <ListItemText primary={book.title} secondary={book.author} />
+                        <ListItemText
+                            primary={book.title}
+                            secondary={book.author?.join(", ")}
+                        />
                     </ListItem>
                 ))
             ) : (

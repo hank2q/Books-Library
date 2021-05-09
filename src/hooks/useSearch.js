@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const useSearch = (setter) => {
+    const [gBooks, setGBooks] = useState([]);
     const searchGoogle = async (q) => {
         try {
             const data = await fetch(
@@ -10,6 +11,7 @@ const useSearch = (setter) => {
             let newGB = [];
             response.items.forEach((item) => {
                 let fromat = {
+                    id: item.id,
                     title: item.volumeInfo.title,
                     author: item.volumeInfo.authors,
                     publisher: item.volumeInfo.publisher,
@@ -21,12 +23,12 @@ const useSearch = (setter) => {
                 };
                 newGB.push(fromat);
             });
-            setter(newGB);
+            setGBooks(newGB);
         } catch (error) {
             console.log(error);
         }
     };
-    return searchGoogle;
+    return [gBooks, searchGoogle];
 };
 
 export default useSearch;

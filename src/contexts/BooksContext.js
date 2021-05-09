@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import Books from "../data";
 import fireDB from "../firebaseDB";
 
 export const BooksContext = createContext();
@@ -16,12 +15,6 @@ export function BooksProvider({ children }) {
         });
     }, []);
     const addBook = (newBook) => {
-        let newId = 0;
-        books.forEach((book) => {
-            if (book.id > newId) {
-                newId = book.id + 1;
-            }
-        });
         setBooks([...books, newBook]);
     };
 

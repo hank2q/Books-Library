@@ -27,7 +27,12 @@ const useStyles = makeStyles((theme) => ({
         borderTop: `1px solid ${theme.palette.grey[500]}`,
         paddingTop: 10,
     },
-
+    addSuggestion: {
+        padding: 0,
+        margin: 0,
+        borderBottom: "1px solid grey",
+        paddingBottom: 10,
+    },
     formButtons: {
         display: "flex",
         flexDirection: "row-reverse",

@@ -11,8 +11,7 @@ function SearchBook() {
     const classes = useStyles();
     const [query, setQuery] = useState("");
     const [myBooks, setMyBooks] = useState([]);
-    const [gBooks, setGBooks] = useState([]);
-    const goog = useSearch(setGBooks);
+    const [gBooks, goog] = useSearch();
     const [isFocused, setIsFocused] = useState(false);
     const [books] = useContext(BooksContext);
 

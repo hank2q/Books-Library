@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useContext } from "react";
-import { BooksContext } from "../contexts/BooksContext";
+import { BooksContext } from "../../contexts/BooksContext";
 import {
     TextField,
     FormControl,
@@ -10,12 +10,11 @@ import {
     Button,
     Grid,
     ListItemText,
-    Divider,
 } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
-import useStyles from "../styles";
+import useStyles from "../../styles";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import useSearch from "../hooks/useSearch";
+import useSearch from "../../hooks/useSearch";
 
 const theme = createMuiTheme({
     palette: {
@@ -27,29 +26,27 @@ const theme = createMuiTheme({
 });
 
 function AddBook({ handleShowAddForm }) {
+    const initialValues = {
+        id: "",
+        title: "",
+        author: [],
+        genre: [],
+        publisher: "",
+        description: "",
+        status: "",
+        image: "",
+    };
     const classes = useStyles();
     const [, addBook] = useContext(BooksContext);
-    const [noTitle, setNoTitle] = useState(false);
-    const [newBookTitle, setNewBookTitle] = useState("");
     const [titleValue, setTitleValue] = useState("");
-    const [newBookAuthor, setNewBookAuthor] = useState("");
-    const [newBookGenre, setNewBookGenre] = useState("");
-    const [newBookPublisher, setNewBookPublisher] = useState("");
-    const [newBookDescription, setNewBookDescription] = useState("");
-    const [newBookStatus, setNewBookStatus] = useState("");
-    const [gBooks, setGBooks] = useState([]);
-    const goog = useSearch(setGBooks);
+    const [noTitle, setNoTitle] = useState(false);
+    const [newBook, setNewBook] = useState(initialValues);
+    const [gBooks, goog] = useSearch();
 
     const submitBook = (e) => {
         e.preventDefault();
-        const newBook = {
-            title: newBookTitle,
-            author: [newBookAuthor],
-            genre: [newBookGenre],
-            publisher: newBookPublisher,
-            status: newBookStatus,
-        };
-        if (!newBookTitle) {
+
+        if (!newBook.title) {
             setNoTitle(true);
             return;
         } else {
@@ -58,24 +55,17 @@ function AddBook({ handleShowAddForm }) {
         if (!newBook.status) {
             newBook.status = "Pending";
         }
+        console.log(newBook.id);
         addBook(newBook);
         closeForm();
     };
 
     const autoFill = (result) => {
         if (result) {
-            setNewBookAuthor(result.author?.join("/ "));
-            setNewBookGenre(result.genre?.join("/ "));
-            setNewBookPublisher(result.publisher);
-            setNewBookDescription(result.description);
+            setNewBook({ ...result });
         } else {
-            setNewBookTitle("");
-            setTitleValue(null);
-            setNewBookAuthor([]);
-            setNewBookGenre([]);
-            setNewBookPublisher("");
-            setNewBookDescription("");
-            setNewBookStatus("");
+            setTitleValue("");
+            setNewBook(initialValues);
         }
     };
 
@@ -90,18 +80,16 @@ function AddBook({ handleShowAddForm }) {
                         <Grid item xs={12} sm={6}>
                             <Autocomplete
                                 id="book-title-fill"
+                                name="title"
                                 options={gBooks}
-                                getOptionLabel={(option) => option.title}
+                                getOptionLabel={(option) =>
+                                    option ? option.title : ""
+                                }
                                 freeSolo
                                 renderOption={(option) => (
                                     <>
                                         <ListItemText
-                                            style={{
-                                                padding: 0,
-                                                margin: 0,
-                                                borderBottom: "1px solid grey",
-                                                paddingBottom: 10,
-                                            }}
+                                            className={classes.addSuggestion}
                                             primary={option.title}
                                             secondary={option.author}
                                         />
@@ -112,10 +100,10 @@ function AddBook({ handleShowAddForm }) {
                                     setTitleValue(newValue);
                                     autoFill(newValue);
                                 }}
-                                inputValue={newBookTitle}
-                                onInputChange={(event, newInputValue) => {
-                                    setNewBookTitle(newInputValue);
-                                    goog(newInputValue);
+                                inputValue={newBook.title}
+                                onInputChange={(e, newValue) => {
+                                    setNewBook({ ...newBook, title: newValue });
+                                    goog(newValue);
                                 }}
                                 renderInput={(params) => (
                                     <TextField
@@ -135,8 +123,14 @@ function AddBook({ handleShowAddForm }) {
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
-                                value={newBookAuthor}
-                                onChange={(e) => setNewBookAuthor(e.target.value)}
+                                name="author"
+                                value={newBook.author}
+                                onChange={(e) =>
+                                    setNewBook({
+                                        ...newBook,
+                                        [e.target.name]: e.target.value?.split("/ "),
+                                    })
+                                }
                                 color="primary"
                                 id="book-author"
                                 label="Author"
@@ -145,8 +139,14 @@ function AddBook({ handleShowAddForm }) {
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
-                                value={newBookGenre}
-                                onChange={(e) => setNewBookGenre(e.target.value)}
+                                name="genre"
+                                value={newBook.genre}
+                                onChange={(e) =>
+                                    setNewBook({
+                                        ...newBook,
+                                        [e.target.name]: e.target.value?.split("/ "),
+                                    })
+                                }
                                 color="primary"
                                 id="book-genre"
                                 label="Genre"
@@ -155,8 +155,15 @@ function AddBook({ handleShowAddForm }) {
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
-                                value={newBookPublisher}
-                                onChange={(e) => setNewBookPublisher(e.target.value)}
+                                name="publisher"
+                                value={newBook.publisher}
+                                onChange={(e) => {
+                                    const { name, value } = e.target;
+                                    setNewBook({
+                                        ...newBook,
+                                        [name]: value,
+                                    });
+                                }}
                                 color="primary"
                                 id="book-publisher"
                                 label="Publisher"
@@ -165,11 +172,16 @@ function AddBook({ handleShowAddForm }) {
                         <Grid item xs={12} sm={12}>
                             <TextField
                                 fullWidth
-                                value={newBookDescription}
+                                name="description"
+                                value={newBook.description}
                                 multiline
-                                onChange={(e) =>
-                                    setNewBookDescription(e.target.value)
-                                }
+                                onChange={(e) => {
+                                    const { name, value } = e.target;
+                                    setNewBook({
+                                        ...newBook,
+                                        [name]: value,
+                                    });
+                                }}
                                 color="primary"
                                 id="book-description"
                                 label="Description"
@@ -181,10 +193,15 @@ function AddBook({ handleShowAddForm }) {
                                 <Select
                                     labelId="status-select-label"
                                     id="status-select"
-                                    value={newBookStatus}
-                                    onChange={(e) =>
-                                        setNewBookStatus(e.target.value)
-                                    }
+                                    value={newBook.status}
+                                    name="status"
+                                    onChange={(e) => {
+                                        const { name, value } = e.target;
+                                        setNewBook({
+                                            ...newBook,
+                                            [name]: value,
+                                        });
+                                    }}
                                 >
                                     <MenuItem value={"Wish List"}>
                                         Wish List
@@ -208,20 +225,3 @@ function AddBook({ handleShowAddForm }) {
 }
 
 export default AddBook;
-/*
-<TextField
-fullWidth
-color="primary"
-id="book-title"
-label="Book Title"
-value={newBookTitle}
-onChange={(e) => {
-    setNewBookTitle(e.target.value);
-    goog(e.target.value);
-}}
-helperText={
-    noTitle ? "Enter book title" : ""
-}
-error={noTitle}
-/>
-*/
