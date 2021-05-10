@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useContext } from "react";
-import { BooksContext } from "../../contexts/BooksContext";
+import { BooksContext } from "../contexts/BooksContext";
 import {
     TextField,
     FormControl,
@@ -12,10 +12,10 @@ import {
     ListItemText,
 } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
-import useStyles from "../../styles";
+import useStyles from "../styles";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import useSearch from "../../hooks/useSearch";
-
+import useSearch from "../hooks/useSearch";
+import FormField from "./FormField";
 const theme = createMuiTheme({
     palette: {
         type: "dark",
@@ -128,7 +128,7 @@ function AddBook({ handleShowAddForm }) {
                                 onChange={(e) =>
                                     setNewBook({
                                         ...newBook,
-                                        [e.target.name]: e.target.value?.split("/ "),
+                                        [e.target.name]: e.target.value?.split(", "),
                                     })
                                 }
                                 color="primary"
@@ -144,7 +144,7 @@ function AddBook({ handleShowAddForm }) {
                                 onChange={(e) =>
                                     setNewBook({
                                         ...newBook,
-                                        [e.target.name]: e.target.value?.split("/ "),
+                                        [e.target.name]: e.target.value?.split(", "),
                                     })
                                 }
                                 color="primary"
