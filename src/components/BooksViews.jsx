@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useContext, useEffect } from "react";
 import Collapse from "@material-ui/core/Collapse";
-import AddBook from "./Add/AddBook";
+import AddBook from "./AddBook";
 import BooksTable from "./BooksTable";
 import BooksCards from "./BooksCards";
 import BookMenu from "./BookMenu";
