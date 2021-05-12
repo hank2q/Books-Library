@@ -26,7 +26,6 @@ const theme = createMuiTheme({
 
 function AddBook({ handleShowAddForm }) {
     const initialValues = {
-        id: "",
         title: "",
         author: [],
         genre: [],

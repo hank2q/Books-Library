@@ -4,32 +4,31 @@ import fireDB from "../firebaseDB";
 export const BooksContext = createContext();
 
 export function BooksProvider({ children }) {
+    const db = fireDB.collection("books");
     const [books, setBooks] = useState([]);
+    const [items, setItems] = useState(db.orderBy("title", "asc"));
     useEffect(() => {
-        const dbRef = fireDB.collection("books");
-        const items = dbRef.orderBy("title", "asc");
-        let fetchedBooks = [];
-        items.get().then((bs) => {
-            bs.forEach((b) => fetchedBooks.push(b.data()));
+        items.get().then((fireBooks) => {
+            let fetchedBooks = [];
+            fireBooks.forEach((fireBook) => {
+                fetchedBooks.push({ ...fireBook.data(), id: fireBook.id });
+            });
             setBooks(fetchedBooks);
         });
-    }, []);
-    const addBook = (newBook) => {
-        setBooks([...books, newBook]);
+    });
+
+    const addBook = async (newBook) => {
+        return db.add(newBook);
     };
 
     const updateBook = (bookId, key, value) => {
-        let updated = books.map((book) => {
-            if (book.id === bookId) {
-                book[key] = value;
-            }
-            return book;
-        });
-        setBooks(updated);
+        const book = db.doc(bookId);
+        book.update({ [key]: value });
     };
 
     const deleteBook = (bookId) => {
-        setBooks((prev) => prev.filter((book) => book.id !== bookId));
+        const book = db.doc(bookId);
+        book.delete();
     };
 
     return (
@@ -38,3 +37,9 @@ export function BooksProvider({ children }) {
         </BooksContext.Provider>
     );
 }
+// items.onSnapshot((bs) => {
+//     bs.forEach((b) => {
+//         fetchedBooks.push({ ...b.data(), id: b.id });
+//     });
+//     setBooks(fetchedBooks);
+// });

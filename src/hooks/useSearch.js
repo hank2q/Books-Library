@@ -11,15 +11,12 @@ const useSearch = (setter) => {
             let newGB = [];
             response.items.forEach((item) => {
                 let fromat = {
-                    id: item.id,
                     title: item.volumeInfo.title,
-                    author: item.volumeInfo.authors,
-                    publisher: item.volumeInfo.publisher,
-                    image:
-                        item.volumeInfo.imageLinks &&
-                        item.volumeInfo.imageLinks.thumbnail,
-                    description: item.volumeInfo.description,
-                    genre: item.volumeInfo.categories && item.volumeInfo.categories,
+                    author: item.volumeInfo.authors || [],
+                    publisher: item.volumeInfo.publisher || "",
+                    image: item.volumeInfo.imageLinks?.thumbnail || "",
+                    description: item.volumeInfo.description || "",
+                    genre: item.volumeInfo.categories || [],
                 };
                 newGB.push(fromat);
             });

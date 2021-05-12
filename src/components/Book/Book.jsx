@@ -7,7 +7,7 @@ function Book({ book }) {
     const matches = useMediaQuery((theme) => theme.breakpoints.up("sm"));
     return (
         <>
-            <BookSettings />
+            <BookSettings book={book} />
             {matches ? <BookContLg book={book} /> : <BookContSm book={book} />}
             <BookDesc description={book.description} />
         </>
