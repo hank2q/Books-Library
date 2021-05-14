@@ -35,7 +35,7 @@ function AddBook({ handleShowAddForm }) {
         image: "",
     };
     const classes = useStyles();
-    const [, addBook] = useContext(BooksContext);
+    const { addBook } = useContext(BooksContext);
     const [titleValue, setTitleValue] = useState("");
     const [noTitle, setNoTitle] = useState(false);
     const [newBook, setNewBook] = useState(initialValues);

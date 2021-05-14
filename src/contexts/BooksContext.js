@@ -9,7 +9,6 @@ export function BooksProvider({ children }) {
     const [items, setItems] = useState(db.orderBy("title", "asc"));
 
     const fetchData = () => {
-        console.log("read data");
         items.onSnapshot((bs) => {
             let fetchedBooks = [];
             bs.forEach((b) => {
@@ -39,7 +38,7 @@ export function BooksProvider({ children }) {
     };
 
     return (
-        <BooksContext.Provider value={[books, addBook, deleteBook, updateBook]}>
+        <BooksContext.Provider value={{ books, addBook, deleteBook, updateBook }}>
             {children}
         </BooksContext.Provider>
     );

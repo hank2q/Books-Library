@@ -8,7 +8,7 @@ export function BookMenuProvider({ children }) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [anchorId, setAnchorId] = useState(null);
     const [booksSelected, setBooksSelected] = useContext(SelectBookContext);
-    const [, , deleteBook] = useContext(BooksContext);
+    const { deleteBook } = useContext(BooksContext);
 
     const openBookMenu = (e, bookId) => {
         setAnchorEl(e.currentTarget);

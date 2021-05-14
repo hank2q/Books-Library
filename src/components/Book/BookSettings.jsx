@@ -7,7 +7,7 @@ import { BooksContext } from "../../contexts/BooksContext";
 import CloseIcon from "@material-ui/icons/Close";
 function BookSettings({ book }) {
     const classes = useStyles();
-    const [, addBook] = useContext(BooksContext);
+    const { addBook } = useContext(BooksContext);
     const [, goToBook, goToBooks] = useContext(PagesContext);
     const handleAdding = () => {
         const newBook = { ...book, status: "Pending" };

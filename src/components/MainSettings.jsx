@@ -27,7 +27,7 @@ const DarkTooltip = withStyles((theme) => ({
 
 function MainSettings({ toggleAddForm, showAddForm, tableView, toggleTableView }) {
     const classes = useStyles();
-    const [books, , deleteBook] = useContext(BooksContext);
+    const { books, deleteBook } = useContext(BooksContext);
     const [booksSelected, setBooksSelected] = useContext(SelectBookContext);
 
     const deleteSelected = () => {

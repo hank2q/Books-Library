@@ -14,7 +14,7 @@ import { BookStatusProvider } from "../contexts/BookStatusContext";
 
 function BooksViews() {
     const [showAddForm, setShowAddForm] = useState(false);
-    const [books] = useContext(BooksContext);
+    const { books } = useContext(BooksContext);
     const [tableView, setTableView] = useState(false);
 
     useEffect(() => {

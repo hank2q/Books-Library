@@ -13,7 +13,7 @@ function SearchBook() {
     const [myBooks, setMyBooks] = useState([]);
     const [gBooks, goog] = useSearch();
     const [isFocused, setIsFocused] = useState(false);
-    const [books] = useContext(BooksContext);
+    const { books } = useContext(BooksContext);
 
     const search = (e) => {
         setQuery(e.target.value);

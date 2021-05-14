@@ -14,7 +14,7 @@ function BookStatusMenu() {
     const [anchorBook, setAnchorBook] = useContext(BookStatusContext);
     const [anchorEl, setAnchorEl] = useContext(AnchorElContext);
     const [menuIndex, setMenuIndex] = useContext(MenuIndexContext);
-    const [, , , updateBook] = useContext(BooksContext);
+    const { updateBook } = useContext(BooksContext);
 
     const closeStatusSelect = () => {
         setAnchorEl(null);
