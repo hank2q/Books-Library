@@ -8,8 +8,12 @@ import CloseIcon from "@material-ui/icons/Close";
 function BookSettings({ book }) {
     const classes = useStyles();
     const [, addBook] = useContext(BooksContext);
-
     const [, goToBook, goToBooks] = useContext(PagesContext);
+    const handleAdding = () => {
+        const newBook = { ...book, status: "Pending" };
+        addBook(newBook);
+        goToBook(newBook);
+    };
     return (
         <Box
             className={classes.mainContSettings}
@@ -25,11 +29,7 @@ function BookSettings({ book }) {
                     disableElevation
                     endIcon={<CloseIcon style={{ transform: "rotate(-45deg)" }} />}
                     className={classes.addBtn}
-                    onClick={async () => {
-                        const newBook = { ...book, status: "Pending" };
-                        const newId = await addBook(newBook);
-                        goToBooks();
-                    }}
+                    onClick={handleAdding}
                 >
                     Add To Library
                 </Button>

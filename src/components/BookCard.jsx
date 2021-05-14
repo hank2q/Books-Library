@@ -29,7 +29,7 @@ function BookCard({ book }) {
                 <CardMedia
                     className={classes.cardMedia}
                     image={book.image || defaultBook}
-                    title="Book Cover"
+                    title={book.title}
                 />
                 <CardContent classes={{ root: classes.cardCont }}>
                     <Box className={classes.cardText}>

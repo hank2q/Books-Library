@@ -22,9 +22,9 @@ function SuggestionItems({ books, heading, queryState }) {
             </ListSubheader>
             <Divider />
             {books.length > 0 ? (
-                books.map((book) => (
+                books.map((book, index) => (
                     <ListItem
-                        key={book.id}
+                        key={index}
                         button
                         onClick={() => {
                             goToBook(book);
