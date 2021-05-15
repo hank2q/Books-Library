@@ -9,6 +9,7 @@ export function BooksProvider({ children }) {
     const [items, setItems] = useState(db.orderBy("title", "asc"));
 
     const fetchData = () => {
+        console.log("request firebase");
         items.onSnapshot((bs) => {
             let fetchedBooks = [];
             bs.forEach((b) => {
@@ -21,6 +22,9 @@ export function BooksProvider({ children }) {
     useEffect(() => {
         fetchData();
     }, []);
+    useEffect(() => {
+        fetchData();
+    }, [items]);
 
     const addBook = async (newBook) => {
         const addedBook = await db.add(newBook);
@@ -37,8 +41,14 @@ export function BooksProvider({ children }) {
         book.delete();
     };
 
+    const changeOrder = (order, direction) => {
+        setItems(db.orderBy(order, direction));
+    };
+
     return (
-        <BooksContext.Provider value={{ books, addBook, deleteBook, updateBook }}>
+        <BooksContext.Provider
+            value={{ books, addBook, deleteBook, updateBook, changeOrder }}
+        >
             {children}
         </BooksContext.Provider>
     );
