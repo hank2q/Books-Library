@@ -51,7 +51,14 @@ function SortButton() {
                 color="primary"
                 disableElevation
                 style={{ margin: "0px 10px" }}
-                endIcon={<SortIcon />}
+                endIcon={
+                    <SortIcon
+                        style={{
+                            transition: "transform ease .25s",
+                            transform: direction === "desc" && "scaleY(-1)",
+                        }}
+                    />
+                }
                 onClick={handleClick}
             >
                 Sort

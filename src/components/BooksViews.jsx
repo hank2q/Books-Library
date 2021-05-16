@@ -11,6 +11,7 @@ import { BooksContext } from "../contexts/BooksContext";
 import { BookSelectionProvider } from "../contexts/BookSelectionContext";
 import { BookMenuProvider } from "../contexts/BookMenuContext";
 import { BookStatusProvider } from "../contexts/BookStatusContext";
+import { CardSizeProvider } from "../contexts/CardSizeContext";
 
 function BooksViews() {
     const [showAddForm, setShowAddForm] = useState(false);
@@ -34,27 +35,29 @@ function BooksViews() {
     return (
         <>
             <BookSelectionProvider>
-                <MainSettings
-                    tableView={tableView}
-                    toggleTableView={setTableView}
-                    toggleAddForm={toggleAddForm}
-                    showAddForm={showAddForm}
-                    books={books}
-                />
-                <Collapse in={showAddForm} mountOnEnter unmountOnExit>
-                    <AddBook handleShowAddForm={toggleAddForm} />
-                </Collapse>
-                <BookMenuProvider>
-                    <BookStatusProvider>
-                        {tableView ? (
-                            <BooksTable books={books} />
-                        ) : (
-                            <BooksCards books={books} />
-                        )}
-                        <BookMenu />
-                        <BookStatusMenu />
-                    </BookStatusProvider>
-                </BookMenuProvider>
+                <CardSizeProvider>
+                    <MainSettings
+                        tableView={tableView}
+                        toggleTableView={setTableView}
+                        toggleAddForm={toggleAddForm}
+                        showAddForm={showAddForm}
+                        books={books}
+                    />
+                    <Collapse in={showAddForm} mountOnEnter unmountOnExit>
+                        <AddBook handleShowAddForm={toggleAddForm} />
+                    </Collapse>
+                    <BookMenuProvider>
+                        <BookStatusProvider>
+                            {tableView ? (
+                                <BooksTable books={books} />
+                            ) : (
+                                <BooksCards books={books} />
+                            )}
+                            <BookMenu />
+                            <BookStatusMenu />
+                        </BookStatusProvider>
+                    </BookMenuProvider>
+                </CardSizeProvider>
             </BookSelectionProvider>
         </>
     );
