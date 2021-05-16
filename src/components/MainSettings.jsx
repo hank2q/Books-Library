@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Box } from "@material-ui/core";
+import { Box, useMediaQuery } from "@material-ui/core";
 import { SelectBookContext } from "../contexts/BookSelectionContext";
 import AddBookButton from "./AddBookButton";
 import useStyles from "../styles";
@@ -9,13 +9,14 @@ import SelectedBooks from "./SelectedBooks";
 import CardSizeButton from "./CardSizeButton";
 function MainSettings({ toggleAddForm, showAddForm, tableView, toggleTableView }) {
     const classes = useStyles();
+    const matches = useMediaQuery((theme) => theme.breakpoints.up("sm"));
     const [booksSelected] = useContext(SelectBookContext);
 
     return (
         <Box className={classes.mainContSettings} component="div">
             <AddBookButton handleShowAddForm={toggleAddForm} adding={showAddForm} />
             <SortButton />
-            <CardSizeButton />
+            {!tableView && matches && <CardSizeButton />}
             {booksSelected.length > 0 && <SelectedBooks />}
             <ViewButtons tableView={tableView} toggleTableView={toggleTableView} />
         </Box>

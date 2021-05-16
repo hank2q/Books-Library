@@ -6,6 +6,7 @@ import {
     Radio,
     RadioGroup,
     FormControlLabel,
+    useMediaQuery,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { BooksContext } from "../contexts/BooksContext";
@@ -28,6 +29,7 @@ const StyledMenu = withStyles({})((props) => (
 const radioStyle = { padding: 0, marginRight: 5, marginLeft: 9 };
 const options = ["Title", "Author", "Status"];
 function SortButton() {
+    const matches = useMediaQuery((theme) => theme.breakpoints.up("sm"));
     const [anchorEl, setAnchorEl] = useState(null);
     const [direction, setDirection] = useState("asc");
     const { changeOrder } = useContext(BooksContext);
@@ -44,6 +46,16 @@ function SortButton() {
     const selectOrder = (index) => {
         changeOrder(options[index].toLowerCase(), direction);
     };
+    const btnIcon = () => {
+        return (
+            <SortIcon
+                style={{
+                    transition: "transform ease .25s",
+                    transform: direction === "desc" && "scaleY(-1)",
+                }}
+            />
+        );
+    };
     return (
         <>
             <Button
@@ -51,17 +63,10 @@ function SortButton() {
                 color="primary"
                 disableElevation
                 style={{ margin: "0px 10px" }}
-                endIcon={
-                    <SortIcon
-                        style={{
-                            transition: "transform ease .25s",
-                            transform: direction === "desc" && "scaleY(-1)",
-                        }}
-                    />
-                }
+                endIcon={matches ? btnIcon() : ""}
                 onClick={handleClick}
             >
-                Sort
+                {matches ? "Sort" : btnIcon()}
             </Button>
             <StyledMenu
                 id="sorting-menu"
