@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Box, useMediaQuery } from "@material-ui/core";
-import { SelectBookContext } from "../contexts/BookSelectionContext";
+import { SelectBookContext } from "../../contexts/BookSelectionContext";
 import AddBookButton from "./AddBookButton";
-import useStyles from "../styles";
+import useStyles from "../../styles";
 import SortButton from "./SortButton";
 import ViewButtons from "./ViewButtons";
 import SelectedBooks from "./SelectedBooks";

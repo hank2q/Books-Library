@@ -6,7 +6,7 @@ import BooksTable from "./BooksTable";
 import BooksCards from "./BooksCards";
 import BookMenu from "./BookMenu";
 import BookStatusMenu from "./BookStatusMenu";
-import MainSettings from "./MainSettings";
+import MainSettings from "./Settings/MainSettings";
 import { BooksContext } from "../contexts/BooksContext";
 import { BookSelectionProvider } from "../contexts/BookSelectionContext";
 import { BookMenuProvider } from "../contexts/BookMenuContext";

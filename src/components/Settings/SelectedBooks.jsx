@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { Box, Checkbox, IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import useStyles from "../styles";
-import { BooksContext } from "../contexts/BooksContext";
-import { SelectBookContext } from "../contexts/BookSelectionContext";
+import useStyles from "../../styles";
+import { BooksContext } from "../../contexts/BooksContext";
+import { SelectBookContext } from "../../contexts/BookSelectionContext";
 
 function SelectedBooks() {
     const classes = useStyles();

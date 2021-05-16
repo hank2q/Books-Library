@@ -1,8 +1,7 @@
 import { useContext, useState } from "react";
 import { IconButton, Popover, Slider, Box } from "@material-ui/core";
 import ZoomInIcon from "@material-ui/icons/ZoomIn";
-import ZoomOutIcon from "@material-ui/icons/ZoomOut";
-import { CardSizeContext } from "../contexts/CardSizeContext";
+import { CardSizeContext } from "../../contexts/CardSizeContext";
 const marks = [
     {
         value: 2,

@@ -3,7 +3,7 @@ import { Button, ButtonGroup, Tooltip } from "@material-ui/core";
 import ViewHeadlineIcon from "@material-ui/icons/ViewHeadline";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import { withStyles } from "@material-ui/core/styles";
-import useStyles from "../styles";
+import useStyles from "../../styles";
 
 const DarkTooltip = withStyles((theme) => ({
     arrow: {

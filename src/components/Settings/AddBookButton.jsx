@@ -1,7 +1,7 @@
 import { Button } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import useStyles from "../styles";
+import useStyles from "../../styles";
 
 function AddBookButton({ handleShowAddForm, adding }) {
     const matches = useMediaQuery((theme) => theme.breakpoints.up("sm"));
