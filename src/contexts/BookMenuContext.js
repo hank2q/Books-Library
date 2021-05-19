@@ -21,36 +21,30 @@ export function BookMenuProvider({ children }) {
         if (!booksSelected.includes(anchorId)) {
             setBooksSelected((prev) => [...prev, anchorId]);
         }
+        closeBookMenu();
     };
 
     const handleDelete = () => {
         deleteBook(anchorId);
         setBooksSelected((prev) => prev.filter((ID) => ID !== anchorId));
+        closeBookMenu();
     };
 
     const handleEdit = () => {
         console.log("edit");
-    };
-    const menuItemClick = (index) => {
-        switch (index) {
-            case 0:
-                handleSelecting();
-                break;
-            case 1:
-                console.log("opening");
-                break;
-            case 2:
-                handleDelete();
-                break;
-            default:
-                console.log("No item");
-                break;
-        }
         closeBookMenu();
     };
+
     return (
         <BookMenuContext.Provider
-            value={[anchorEl, openBookMenu, closeBookMenu, menuItemClick]}
+            value={{
+                anchorEl,
+                openBookMenu,
+                closeBookMenu,
+                handleSelecting,
+                handleDelete,
+                handleEdit,
+            }}
         >
             {children}
         </BookMenuContext.Provider>

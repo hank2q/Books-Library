@@ -1,17 +1,21 @@
 import { Menu, MenuItem } from "@material-ui/core";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { BookMenuContext } from "../contexts/BookMenuContext";
 import ConfirmDelete from "./ConfirmDelete";
-const options = ["Select", "Edit", "Delete"];
 function BookMenu() {
-    const [anchorEl, , closeBookMenu, menuItemClick] = useContext(BookMenuContext);
+    const { anchorEl, closeBookMenu, handleSelecting, handleDelete, handleEdit } =
+        useContext(BookMenuContext);
     const [open, setOpen] = useState(false);
     const handleClose = () => {
         setOpen(false);
     };
     const handleConfirm = () => {
-        console.log("use agreed to delete");
+        handleDelete();
         setOpen(false);
+    };
+    const confirmDelete = () => {
+        setOpen(true);
+        closeBookMenu();
     };
     return (
         <>
@@ -21,16 +25,14 @@ function BookMenu() {
                 open={Boolean(anchorEl)}
                 onClose={closeBookMenu}
             >
-                {options.map((option, index) => (
-                    <MenuItem onClick={() => menuItemClick(index)} key={index}>
-                        {option}
-                    </MenuItem>
-                ))}
+                <MenuItem onClick={handleSelecting}>Select</MenuItem>
+                <MenuItem onClick={handleEdit}>Edit</MenuItem>
+                <MenuItem onClick={confirmDelete}>Delete</MenuItem>
             </Menu>
             <ConfirmDelete
                 open={open}
-                title="Test Dialoug"
-                text="This is a test to see the functionality of dialog"
+                title="Confirm Delete"
+                text={`Are you sure you want to delete "Book title"}`}
                 handleConfirm={handleConfirm}
                 handleClose={handleClose}
             />

@@ -6,7 +6,7 @@ import useStyles from "../styles";
 
 function BookMenuBtn({ bookId }) {
     const classes = useStyles();
-    const [, openBookMenu, ,] = useContext(BookMenuContext);
+    const { openBookMenu } = useContext(BookMenuContext);
     return (
         <IconButton
             className={classes.menuBtn}
