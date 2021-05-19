@@ -15,11 +15,13 @@ function ConfirmDelete({ open, title, text, handleConfirm, handleClose }) {
             onClose={handleClose}
             aria-labelledby="confirm-book-deletion"
             aria-describedby="alert-confirm-delete"
+            fullWidth={true}
+            maxWidth="sm"
         >
             <DialogTitle id="confirm-delete-title">{title}</DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    {text}
+                    <div>{text}</div>
                 </DialogContentText>
             </DialogContent>
             <DialogActions>

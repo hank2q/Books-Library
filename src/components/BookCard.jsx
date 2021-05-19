@@ -50,7 +50,7 @@ function BookCard({ book }) {
                     <SelectBook bookId={book.id} />
                     <BookStatusChip book={book} />
                 </div>
-                <BookMenuBtn bookId={book.id} />
+                <BookMenuBtn book={book} />
             </CardActions>
         </Card>
     );

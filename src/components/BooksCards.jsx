@@ -6,7 +6,7 @@ import { CardSizeContext } from "../contexts/CardSizeContext";
 
 function BooksCards({ books }) {
     const classes = useStyles();
-    const [cardSize, setCardSize] = useContext(CardSizeContext);
+    const [cardSize] = useContext(CardSizeContext);
     return (
         <Grid className={classes.bookCardsCont} container spacing={3}>
             {books.map((book) => (

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { IconButton, Popover, Slider, Box } from "@material-ui/core";
+import { IconButton, Popover, Slider } from "@material-ui/core";
 import ZoomInIcon from "@material-ui/icons/ZoomIn";
 import { CardSizeContext } from "../../contexts/CardSizeContext";
 const marks = [
@@ -38,7 +38,6 @@ function CardSizeButton() {
             <IconButton
                 aria-label="Card Size"
                 style={{ padding: 6, color: "#252525", backgroundColor: "#fff" }}
-                disableElevation
                 onClick={(e) => setAnchorEl(e.currentTarget)}
             >
                 <ZoomInIcon />

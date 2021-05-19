@@ -32,7 +32,7 @@ function BookRow({ book }) {
                 <BookStatusChip book={book} />
             </TableCell>
             <TableCell className={classes.optionCell} component="td" align="right">
-                <BookMenuBtn bookId={book.id} />
+                <BookMenuBtn book={book} />
             </TableCell>
         </TableRow>
     );

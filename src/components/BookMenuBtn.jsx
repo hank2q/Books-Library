@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { BookMenuContext } from "../contexts/BookMenuContext";
 import useStyles from "../styles";
 
-function BookMenuBtn({ bookId }) {
+function BookMenuBtn({ book }) {
     const classes = useStyles();
     const { openBookMenu } = useContext(BookMenuContext);
     return (
@@ -13,7 +13,7 @@ function BookMenuBtn({ bookId }) {
             aria-label="more"
             aria-controls="long-menu"
             aria-haspopup="true"
-            onClick={(e) => openBookMenu(e, bookId)}
+            onClick={(e) => openBookMenu(e, book)}
         >
             <MoreVertIcon />
         </IconButton>

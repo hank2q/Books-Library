@@ -76,7 +76,9 @@ function SortButton() {
                 onClose={handleClose}
             >
                 {options.map((option, i) => (
-                    <MenuItem onClick={() => selectOrder(i)}>{option}</MenuItem>
+                    <MenuItem key={i} onClick={() => selectOrder(i)}>
+                        {option}
+                    </MenuItem>
                 ))}
                 <RadioGroup
                     aria-label="gender"
