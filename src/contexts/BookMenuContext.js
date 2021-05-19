@@ -1,6 +1,6 @@
 import { createContext, useState, useContext } from "react";
-import { SelectBookContext } from "../contexts/BookSelectionContext";
-import { BooksContext } from "../contexts/BooksContext";
+import { SelectBookContext } from "./BookSelectionContext";
+import { BooksContext } from "./BooksContext";
 
 export const BookMenuContext = createContext();
 
@@ -27,13 +27,17 @@ export function BookMenuProvider({ children }) {
         deleteBook(anchorId);
         setBooksSelected((prev) => prev.filter((ID) => ID !== anchorId));
     };
+
+    const handleEdit = () => {
+        console.log("edit");
+    };
     const menuItemClick = (index) => {
         switch (index) {
             case 0:
                 handleSelecting();
                 break;
             case 1:
-                console.log("editing");
+                console.log("opening");
                 break;
             case 2:
                 handleDelete();
