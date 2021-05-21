@@ -14,18 +14,22 @@ import useStyles from "../styles";
 import SelectBook from "./SelectBook";
 import BookMenuBtn from "./BookMenuBtn";
 import { PagesContext } from "../contexts/PagesContext";
+import { SelectBookContext } from "../contexts/BookSelectionContext";
 
 function BookCard({ book }) {
     const classes = useStyles();
     const [, goToBook] = useContext(PagesContext);
+    const [booksSelected] = useContext(SelectBookContext);
+
+    const handleClick = () => {
+        if (booksSelected.length === 0) {
+            goToBook(book);
+        }
+    };
 
     return (
         <Card className={classes.card}>
-            <CardActionArea
-                onClick={() => {
-                    goToBook(book);
-                }}
-            >
+            <CardActionArea onClick={handleClick}>
                 <CardMedia
                     className={classes.cardMedia}
                     image={book.image || defaultBook}
