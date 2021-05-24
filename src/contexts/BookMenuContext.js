@@ -35,11 +35,6 @@ export function BookMenuProvider({ children }) {
         closeBookMenu();
     };
 
-    const handleEdit = () => {
-        console.log("edit");
-        closeBookMenu();
-    };
-
     return (
         <BookMenuContext.Provider
             value={{
@@ -49,7 +44,6 @@ export function BookMenuProvider({ children }) {
                 closeBookMenu,
                 handleSelecting,
                 handleDelete,
-                handleEdit,
             }}
         >
             {children}

@@ -67,6 +67,14 @@ function AddBook({ handleShowAddForm }) {
         }
     };
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setNewBook({
+            ...newBook,
+            [name]: value,
+        });
+    };
+
     const closeForm = () => {
         handleShowAddForm();
     };
@@ -123,12 +131,13 @@ function AddBook({ handleShowAddForm }) {
                                 fullWidth
                                 name="author"
                                 value={newBook.author}
-                                onChange={(e) =>
+                                onChange={(e) => {
+                                    const { name, value } = e.target;
                                     setNewBook({
                                         ...newBook,
-                                        [e.target.name]: e.target.value?.split(", "),
-                                    })
-                                }
+                                        [name]: value?.split(", "),
+                                    });
+                                }}
                                 color="primary"
                                 id="book-author"
                                 label="Author"
@@ -139,12 +148,13 @@ function AddBook({ handleShowAddForm }) {
                                 fullWidth
                                 name="genre"
                                 value={newBook.genre}
-                                onChange={(e) =>
+                                onChange={(e) => {
+                                    const { name, value } = e.target;
                                     setNewBook({
                                         ...newBook,
-                                        [e.target.name]: e.target.value?.split(", "),
-                                    })
-                                }
+                                        [name]: value?.split(", "),
+                                    });
+                                }}
                                 color="primary"
                                 id="book-genre"
                                 label="Genre"
@@ -155,13 +165,7 @@ function AddBook({ handleShowAddForm }) {
                                 fullWidth
                                 name="publisher"
                                 value={newBook.publisher}
-                                onChange={(e) => {
-                                    const { name, value } = e.target;
-                                    setNewBook({
-                                        ...newBook,
-                                        [name]: value,
-                                    });
-                                }}
+                                onChange={handleChange}
                                 color="primary"
                                 id="book-publisher"
                                 label="Publisher"
@@ -173,13 +177,7 @@ function AddBook({ handleShowAddForm }) {
                                 name="description"
                                 value={newBook.description}
                                 multiline
-                                onChange={(e) => {
-                                    const { name, value } = e.target;
-                                    setNewBook({
-                                        ...newBook,
-                                        [name]: value,
-                                    });
-                                }}
+                                onChange={handleChange}
                                 color="primary"
                                 id="book-description"
                                 label="Description"
@@ -193,13 +191,7 @@ function AddBook({ handleShowAddForm }) {
                                     id="status-select"
                                     value={newBook.status}
                                     name="status"
-                                    onChange={(e) => {
-                                        const { name, value } = e.target;
-                                        setNewBook({
-                                            ...newBook,
-                                            [name]: value,
-                                        });
-                                    }}
+                                    onChange={handleChange}
                                 >
                                     <MenuItem value={"Wish List"}>
                                         Wish List

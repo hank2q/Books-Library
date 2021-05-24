@@ -4,14 +4,8 @@ import { BookMenuContext } from "../contexts/BookMenuContext";
 import ConfirmDelete from "./ConfirmDelete";
 import EditBook from "./Edit/EditBook";
 function BookMenu() {
-    const {
-        anchorEl,
-        anchorBook,
-        closeBookMenu,
-        handleSelecting,
-        handleDelete,
-        handleEdit,
-    } = useContext(BookMenuContext);
+    const { anchorEl, anchorBook, closeBookMenu, handleSelecting, handleDelete } =
+        useContext(BookMenuContext);
     const [openDelete, setOpenDelete] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const closeConfirm = () => {
@@ -63,7 +57,7 @@ function BookMenu() {
                 handleConfirm={handleConfirm}
                 handleClose={closeConfirm}
             />
-            <EditBook open={openEdit} setOpen={setOpenEdit} />
+            <EditBook open={openEdit} setOpen={setOpenEdit} book={anchorBook} />
         </>
     );
 }
