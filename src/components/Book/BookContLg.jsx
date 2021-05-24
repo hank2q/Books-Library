@@ -27,7 +27,7 @@ function BookContLg({ book }) {
                     <BookInfo
                         lineHeight="2.7"
                         lable={"Genre"}
-                        value={book.genre?.join("/ ")}
+                        value={book.genre?.join(", ")}
                     />
                     <BookInfo
                         lineHeight="2.7"

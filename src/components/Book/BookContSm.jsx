@@ -27,7 +27,7 @@ function BookContSm({ book }) {
                         lineHeight="2"
                         variant="body2"
                         lable={"Genre"}
-                        value={book.genre?.join("/ ")}
+                        value={book.genre?.join(", ")}
                     />
                     <BookInfo
                         lineHeight="2"
