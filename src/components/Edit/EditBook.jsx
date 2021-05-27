@@ -162,6 +162,18 @@ function EditBook({ open, setOpen, book }) {
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
+                        <TextField
+                            variant="outlined"
+                            fullWidth
+                            name="image"
+                            color="primary"
+                            id="book-image"
+                            label="Image URL"
+                            value={newValues?.image}
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
                         <FormControl variant="outlined" style={{ minWidth: 120 }}>
                             <InputLabel id="demo-simple-select-outlined-label">
                                 Age

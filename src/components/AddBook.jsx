@@ -184,6 +184,17 @@ function AddBook({ handleShowAddForm }) {
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
+                            <TextField
+                                fullWidth
+                                name="image"
+                                value={newBook.image}
+                                onChange={handleChange}
+                                color="primary"
+                                id="book-image"
+                                label="Image Url"
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
                             <FormControl className={classes.statusSelect}>
                                 <InputLabel id="book-status">Status</InputLabel>
                                 <Select
