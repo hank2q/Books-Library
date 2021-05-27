@@ -1,9 +1,12 @@
 import { Menu, MenuItem } from "@material-ui/core";
 import { useContext, useState } from "react";
 import { BookMenuContext } from "../contexts/BookMenuContext";
+import { BooksContext } from "../contexts/BooksContext";
 import ConfirmDelete from "./ConfirmDelete";
 import EditBook from "./EditBook";
 function BookMenu() {
+    const { deleteBook } = useContext(BooksContext);
+
     const { anchorEl, anchorBook, closeBookMenu, handleSelecting, handleDelete } =
         useContext(BookMenuContext);
     const [openDelete, setOpenDelete] = useState(false);
@@ -12,7 +15,7 @@ function BookMenu() {
         setOpenDelete(false);
     };
     const handleConfirm = () => {
-        handleDelete();
+        handleDelete(anchorBook?.id);
         setOpenDelete(false);
     };
     const confirmDelete = () => {

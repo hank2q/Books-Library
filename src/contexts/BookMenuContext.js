@@ -18,21 +18,17 @@ export function BookMenuProvider({ children }) {
         setAnchorEl(null);
     };
     const handleSelecting = () => {
-        console.log(booksSelected);
         if (booksSelected.length === 0) {
             setBooksSelected([anchorBook.id]);
-            console.log(booksSelected);
         } else if (!booksSelected.includes(anchorBook.Id)) {
             setBooksSelected((prev) => [...prev, anchorBook.Id]);
-            console.log(booksSelected);
         }
         closeBookMenu();
     };
 
-    const handleDelete = () => {
-        deleteBook(anchorBook.Id);
-        setBooksSelected((prev) => prev.filter((ID) => ID !== anchorBook.Id));
-        closeBookMenu();
+    const handleDelete = (id) => {
+        deleteBook(id);
+        setBooksSelected((prev) => prev.filter((ID) => ID !== id));
     };
 
     return (
