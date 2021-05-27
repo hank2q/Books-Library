@@ -8,7 +8,21 @@ import {
     DialogTitle,
 } from "@material-ui/core";
 
-function ConfirmDelete({ open, title, text, handleConfirm, handleClose }) {
+function ConfirmDelete({ open, text, handleConfirm, handleClose, bookTitle }) {
+    const defaultText = () => {
+        return (
+            <div>
+                <span>Are you sure you want to delete</span>
+                <br />
+                <span>
+                    <b>{bookTitle}</b>
+                </span>
+
+                <span> from your library?</span>
+            </div>
+        );
+    };
+
     return (
         <Dialog
             open={open}
@@ -21,7 +35,7 @@ function ConfirmDelete({ open, title, text, handleConfirm, handleClose }) {
             <DialogTitle id="confirm-delete-title">Confirm Delete</DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    <div>{text}</div>
+                    <div>{text || defaultText()}</div>
                 </DialogContentText>
             </DialogContent>
             <DialogActions>

@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { BooksContext } from "../contexts/BooksContext";
+import { PagesContext } from "../contexts/PagesContext";
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} mountOnEnter unmountOnExit />;
@@ -25,9 +26,13 @@ function EditBook({ open, setOpen, book }) {
     const [newValues, setNewValues] = useState({});
     const [noTitle, setNoTitle] = useState(false);
     const { updateBook } = useContext(BooksContext);
+    const [bookPage, goToBook] = useContext(PagesContext);
 
     const handleClose = () => {
         setOpen(false);
+        if (bookPage) {
+            goToBook({ ...book, ...newValues });
+        }
     };
 
     useEffect(() => {

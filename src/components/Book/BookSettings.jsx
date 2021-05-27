@@ -7,10 +7,12 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import ConfirmDelete from "../ConfirmDelete";
 import { PagesContext } from "../../contexts/PagesContext";
 import { BooksContext } from "../../contexts/BooksContext";
+import EditBook from "../EditBook";
 import CloseIcon from "@material-ui/icons/Close";
 function BookSettings({ book }) {
     const classes = useStyles();
     const [openDelete, setOpenDelete] = useState(false);
+    const [openEdit, setOpenEdit] = useState(false);
 
     const { addBook, deleteBook } = useContext(BooksContext);
     const [, goToBook, goToBooks] = useContext(PagesContext);
@@ -26,18 +28,6 @@ function BookSettings({ book }) {
         goToBooks();
     };
 
-    const text = () => {
-        return (
-            <div>
-                <span>Are you sure you want to delete</span>
-                <br />
-                <span>
-                    <b>{book.title}</b>
-                </span>
-                <span> from your library?</span>
-            </div>
-        );
-    };
     return (
         <Box
             className={classes.mainContSettings}
@@ -61,7 +51,12 @@ function BookSettings({ book }) {
             {book.id && (
                 <>
                     <ButtonGroup variant="contained" disableElevation>
-                        <Button endIcon={<EditIcon />}>Edit</Button>
+                        <Button
+                            onClick={() => setOpenEdit(true)}
+                            endIcon={<EditIcon />}
+                        >
+                            Edit
+                        </Button>
                         <Button
                             style={{ backgroundColor: "#ff1740" }}
                             endIcon={<DeleteIcon />}
@@ -72,10 +67,11 @@ function BookSettings({ book }) {
                     </ButtonGroup>
                     <ConfirmDelete
                         open={openDelete}
-                        text={text()}
+                        bookTitle={book.title}
                         handleConfirm={handleConfirm}
                         handleClose={() => setOpenDelete(false)}
                     />
+                    <EditBook open={openEdit} setOpen={setOpenEdit} book={book} />
                 </>
             )}
         </Box>
