@@ -45,7 +45,8 @@ function SelectedBooks() {
                     if (booksSelected.includes(book.id)) {
                         return (
                             <span>
-                                "<b>{book.title}</b>"<br />
+                                <b>{book.title}</b>
+                                <br />
                             </span>
                         );
                     }

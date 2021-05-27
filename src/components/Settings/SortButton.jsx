@@ -7,6 +7,7 @@ import {
     RadioGroup,
     FormControlLabel,
     useMediaQuery,
+    IconButton,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { BooksContext } from "../../contexts/BooksContext";
@@ -58,16 +59,31 @@ function SortButton() {
     };
     return (
         <>
-            <Button
-                variant="contained"
-                color="primary"
-                disableElevation
-                style={{ margin: "0px 10px" }}
-                endIcon={matches ? btnIcon() : ""}
-                onClick={handleClick}
-            >
-                {matches ? "Sort" : btnIcon()}
-            </Button>
+            {matches ? (
+                <Button
+                    variant="contained"
+                    color="primary"
+                    disableElevation
+                    style={{ margin: "0px 10px" }}
+                    endIcon={btnIcon()}
+                    onClick={handleClick}
+                >
+                    Sort
+                </Button>
+            ) : (
+                <IconButton
+                    aria-label="Sort Books"
+                    style={{
+                        padding: 6,
+                        color: "#fff",
+                        backgroundColor: "#252525",
+                        margin: "0px 10px",
+                    }}
+                    onClick={handleClick}
+                >
+                    {btnIcon()}
+                </IconButton>
+            )}
             <StyledMenu
                 id="sorting-menu"
                 anchorEl={anchorEl}

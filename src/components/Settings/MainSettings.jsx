@@ -18,7 +18,20 @@ function MainSettings({ toggleAddForm, showAddForm, tableView, toggleTableView }
             <SortButton />
             {!tableView && matches && <CardSizeButton />}
             {booksSelected.length > 0 && <SelectedBooks />}
-            <ViewButtons tableView={tableView} toggleTableView={toggleTableView} />
+            {matches ? (
+                <ViewButtons
+                    tableView={tableView}
+                    toggleTableView={toggleTableView}
+                />
+            ) : (
+                !booksSelected.length > 0 && (
+                    <ViewButtons
+                        tableView={tableView}
+                        toggleTableView={toggleTableView}
+                    />
+                )
+            )}
+            {/* <ViewButtons tableView={tableView} toggleTableView={toggleTableView} /> */}
         </Box>
     );
 }
