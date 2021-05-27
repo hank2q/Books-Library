@@ -33,8 +33,7 @@ export function BooksProvider({ children }) {
 
     const updateBook = async (bookId, key, value) => {
         const book = db.doc(bookId);
-        const result = await book.update({ [key]: value });
-        return result;
+        await book.update({ [key]: value });
     };
 
     const deleteBook = (bookId) => {
