@@ -22,6 +22,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 function EditBook({ open, setOpen, book }) {
     const [newValues, setNewValues] = useState({});
+    const [noTitle, setNoTitle] = useState(false);
     const { updateBook } = useContext(BooksContext);
 
     const handleClose = () => {
@@ -41,6 +42,10 @@ function EditBook({ open, setOpen, book }) {
     };
 
     const handleSave = () => {
+        if (!newValues.title) {
+            setNoTitle(true);
+            return;
+        }
         Object.entries(newValues).forEach(([key, value]) => {
             if (book[key] !== newValues[key]) {
                 updateBook(book.id, key, value);
@@ -91,8 +96,8 @@ function EditBook({ open, setOpen, book }) {
                             label="Title"
                             value={newValues?.title}
                             onChange={handleChange}
-                            // helperText={noTitle ? "Enter book title" : ""}
-                            // error={noTitle}
+                            helperText={noTitle ? "Book must have a title" : ""}
+                            error={noTitle}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
