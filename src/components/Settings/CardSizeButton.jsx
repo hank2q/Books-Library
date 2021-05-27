@@ -19,10 +19,6 @@ const marks = [
         value: 6,
         label: "6",
     },
-    {
-        value: 12,
-        label: "12",
-    },
 ];
 function CardSizeButton() {
     const [cardSize, setCardSize] = useContext(CardSizeContext);
@@ -61,7 +57,7 @@ function CardSizeButton() {
                         defaultValue={cardSize}
                         aria-labelledby="card-sizes-slider"
                         step={null}
-                        max={12}
+                        max={6}
                         min={2}
                         marks={marks}
                         onChange={handleChange}

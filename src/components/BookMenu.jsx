@@ -2,7 +2,7 @@ import { Menu, MenuItem } from "@material-ui/core";
 import { useContext, useState } from "react";
 import { BookMenuContext } from "../contexts/BookMenuContext";
 import ConfirmDelete from "./ConfirmDelete";
-import EditBook from "./Edit/EditBook";
+import EditBook from "./EditBook";
 function BookMenu() {
     const { anchorEl, anchorBook, closeBookMenu, handleSelecting, handleDelete } =
         useContext(BookMenuContext);
@@ -52,7 +52,6 @@ function BookMenu() {
             </Menu>
             <ConfirmDelete
                 open={openDelete}
-                title="Confirm Delete"
                 text={text()}
                 handleConfirm={handleConfirm}
                 handleClose={closeConfirm}

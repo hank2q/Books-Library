@@ -15,7 +15,8 @@ import {
     Slide,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import { BooksContext } from "../../contexts/BooksContext";
+import { BooksContext } from "../contexts/BooksContext";
+
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} mountOnEnter unmountOnExit />;
 });

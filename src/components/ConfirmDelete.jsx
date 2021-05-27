@@ -18,7 +18,7 @@ function ConfirmDelete({ open, title, text, handleConfirm, handleClose }) {
             fullWidth={true}
             maxWidth="sm"
         >
-            <DialogTitle id="confirm-delete-title">{title}</DialogTitle>
+            <DialogTitle id="confirm-delete-title">Confirm Delete</DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-description">
                     <div>{text}</div>

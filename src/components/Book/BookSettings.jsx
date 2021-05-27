@@ -1,18 +1,42 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import useStyles from "../../styles";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
-import { Box, IconButton, Button } from "@material-ui/core";
+import { Box, IconButton, Button, ButtonGroup } from "@material-ui/core";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+import ConfirmDelete from "../ConfirmDelete";
 import { PagesContext } from "../../contexts/PagesContext";
 import { BooksContext } from "../../contexts/BooksContext";
 import CloseIcon from "@material-ui/icons/Close";
 function BookSettings({ book }) {
     const classes = useStyles();
-    const { addBook } = useContext(BooksContext);
+    const [openDelete, setOpenDelete] = useState(false);
+
+    const { addBook, deleteBook } = useContext(BooksContext);
     const [, goToBook, goToBooks] = useContext(PagesContext);
+
     const handleAdding = () => {
         const newBook = { ...book, status: "Pending" };
         addBook(newBook);
         goToBook(newBook);
+    };
+    const handleConfirm = () => {
+        deleteBook(book.id);
+        setOpenDelete(false);
+        goToBooks();
+    };
+
+    const text = () => {
+        return (
+            <div>
+                <span>Are you sure you want to delete</span>
+                <br />
+                <span>
+                    <b>{book.title}</b>
+                </span>
+                <span> from your library?</span>
+            </div>
+        );
     };
     return (
         <Box
@@ -33,6 +57,26 @@ function BookSettings({ book }) {
                 >
                     Add To Library
                 </Button>
+            )}
+            {book.id && (
+                <>
+                    <ButtonGroup variant="contained" disableElevation>
+                        <Button endIcon={<EditIcon />}>Edit</Button>
+                        <Button
+                            style={{ backgroundColor: "#ff1740" }}
+                            endIcon={<DeleteIcon />}
+                            onClick={() => setOpenDelete(true)}
+                        >
+                            Delete
+                        </Button>
+                    </ButtonGroup>
+                    <ConfirmDelete
+                        open={openDelete}
+                        text={text()}
+                        handleConfirm={handleConfirm}
+                        handleClose={() => setOpenDelete(false)}
+                    />
+                </>
             )}
         </Box>
     );

@@ -75,7 +75,6 @@ function SelectedBooks() {
             </IconButton>
             <ConfirmDelete
                 open={open}
-                title="Confirm Delete"
                 text={text()}
                 handleConfirm={handleConfirm}
                 handleClose={closeConfirm}
