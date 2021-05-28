@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import useStyles from "../../styles";
-import { Box } from "@material-ui/core";
+import { Box, useMediaQuery } from "@material-ui/core";
 import SearchBar from "./SearchBar";
 import SearchSuggestion from "./SearchSuggestion";
 import { BooksContext } from "../../contexts/BooksContext";
@@ -13,8 +13,10 @@ function SearchBook() {
     const [myBooks, setMyBooks] = useState([]);
     const [gBooks, goog] = useSearch();
     const [isFocused, setIsFocused] = useState(false);
+    const matches = useMediaQuery((theme) => theme.breakpoints.down("sm"));
     const { books } = useContext(BooksContext);
-
+    const desktop = isFocused && query;
+    const mobile = Boolean(query);
     const search = (e) => {
         setQuery(e.target.value);
         setMyBooks(
@@ -39,13 +41,21 @@ function SearchBook() {
                 handleSearch={search}
                 setIsFocused={setIsFocused}
             />
-            {isFocused && query && (
-                <SearchSuggestion
-                    myBooks={myBooks}
-                    googleBooks={gBooks}
-                    queryState={[query, setQuery]}
-                />
-            )}
+            {matches
+                ? mobile && (
+                      <SearchSuggestion
+                          myBooks={myBooks}
+                          googleBooks={gBooks}
+                          queryState={[query, setQuery]}
+                      />
+                  )
+                : desktop && (
+                      <SearchSuggestion
+                          myBooks={myBooks}
+                          googleBooks={gBooks}
+                          queryState={[query, setQuery]}
+                      />
+                  )}
         </Box>
     );
 }
