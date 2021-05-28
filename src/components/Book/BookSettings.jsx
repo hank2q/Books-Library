@@ -1,7 +1,13 @@
 import { useContext, useState } from "react";
 import useStyles from "../../styles";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
-import { Box, IconButton, Button, ButtonGroup } from "@material-ui/core";
+import {
+    Box,
+    IconButton,
+    Button,
+    ButtonGroup,
+    useMediaQuery,
+} from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ConfirmDelete from "../ConfirmDelete";
@@ -11,9 +17,9 @@ import EditBook from "../EditBook";
 import CloseIcon from "@material-ui/icons/Close";
 function BookSettings({ book }) {
     const classes = useStyles();
+    const matches = useMediaQuery((theme) => theme.breakpoints.down("sm"));
     const [openDelete, setOpenDelete] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
-
     const { addBook, deleteBook } = useContext(BooksContext);
     const [, goToBook, goToBooks] = useContext(PagesContext);
 
@@ -50,7 +56,11 @@ function BookSettings({ book }) {
             )}
             {book.id && (
                 <>
-                    <ButtonGroup variant="contained" disableElevation>
+                    <ButtonGroup
+                        size={matches ? "small" : ""}
+                        variant="contained"
+                        disableElevation
+                    >
                         <Button
                             onClick={() => setOpenEdit(true)}
                             endIcon={<EditIcon />}
