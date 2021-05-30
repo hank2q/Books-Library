@@ -39,11 +39,11 @@ function ConfirmDelete({ open, text, handleConfirm, handleClose, bookTitle }) {
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                    Cancel
-                </Button>
                 <Button onClick={handleConfirm} color="primary" autoFocus>
                     Confirm
+                </Button>
+                <Button onClick={handleClose} color="primary">
+                    Cancel
                 </Button>
             </DialogActions>
         </Dialog>

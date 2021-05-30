@@ -181,16 +181,14 @@ function EditBook({ open, setOpen, book }) {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <FormControl variant="outlined" style={{ minWidth: 120 }}>
-                            <InputLabel id="demo-simple-select-outlined-label">
-                                Age
-                            </InputLabel>
+                            <InputLabel>Status</InputLabel>
                             <Select
                                 labelId="status-select-label"
                                 id="select-status"
                                 name="status"
                                 value={newValues?.status}
                                 onChange={handleChange}
-                                label="Age"
+                                label="Status"
                             >
                                 <MenuItem value={"Wish List"}>Wish List</MenuItem>
                                 <MenuItem value={"Pending"}>Pending</MenuItem>

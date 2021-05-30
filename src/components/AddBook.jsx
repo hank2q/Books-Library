@@ -191,7 +191,7 @@ function AddBook({ handleShowAddForm }) {
                                 onChange={handleChange}
                                 color="primary"
                                 id="book-image"
-                                label="Image Url"
+                                label="Image URL"
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>

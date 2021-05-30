@@ -6,9 +6,11 @@ export const BooksContext = createContext();
 export function BooksProvider({ children }) {
     const db = fireBase.firestore().collection("books");
     const [books, setBooks] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [items, setItems] = useState(db.orderBy("title", "asc"));
 
     const fetchData = () => {
+        setLoading(true);
         console.log("request firebase");
         items.onSnapshot((bs) => {
             let fetchedBooks = [];
@@ -16,6 +18,7 @@ export function BooksProvider({ children }) {
                 fetchedBooks.push({ ...b.data(), id: b.id });
             });
             setBooks(fetchedBooks);
+            setLoading(false);
         });
     };
 
@@ -47,7 +50,7 @@ export function BooksProvider({ children }) {
 
     return (
         <BooksContext.Provider
-            value={{ books, addBook, deleteBook, updateBook, changeOrder }}
+            value={{ books, addBook, deleteBook, updateBook, changeOrder, loading }}
         >
             {children}
         </BooksContext.Provider>

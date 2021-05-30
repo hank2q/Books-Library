@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useContext, useEffect } from "react";
-import Collapse from "@material-ui/core/Collapse";
+import { Collapse, LinearProgress } from "@material-ui/core";
 import AddBook from "./AddBook";
 import BooksTable from "./BooksTable";
 import BooksCards from "./BooksCards";
@@ -15,7 +15,7 @@ import { CardSizeProvider } from "../contexts/CardSizeContext";
 
 function BooksViews() {
     const [showAddForm, setShowAddForm] = useState(false);
-    const { books } = useContext(BooksContext);
+    const { books, loading } = useContext(BooksContext);
     const [tableView, setTableView] = useState(false);
 
     useEffect(() => {
@@ -46,6 +46,7 @@ function BooksViews() {
                     <Collapse in={showAddForm} mountOnEnter unmountOnExit>
                         <AddBook handleShowAddForm={toggleAddForm} />
                     </Collapse>
+                    {loading && <LinearProgress color="secondary" />}
                     <BookMenuProvider>
                         <BookStatusProvider>
                             {tableView ? (
