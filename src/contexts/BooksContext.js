@@ -56,8 +56,3 @@ export function BooksProvider({ children }) {
         </BooksContext.Provider>
     );
 }
-
-// const fireBooks = await items.get();
-// fireBooks.forEach((fireBook) => {
-//     fetchedBooks.push({ ...fireBook.data(), id: fireBook.id });
-// });
