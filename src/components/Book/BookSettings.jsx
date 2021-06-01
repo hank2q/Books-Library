@@ -7,6 +7,7 @@ import {
     Button,
     ButtonGroup,
     useMediaQuery,
+    CircularProgress,
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -20,13 +21,16 @@ function BookSettings({ book }) {
     const matches = useMediaQuery((theme) => theme.breakpoints.down("sm"));
     const [openDelete, setOpenDelete] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
+    const [loading, setLoading] = useState(false);
     const { addBook, deleteBook } = useContext(BooksContext);
     const [, goToBook, goToBooks] = useContext(PagesContext);
 
-    const handleAdding = () => {
+    const handleAdding = async () => {
         const newBook = { ...book, status: "Pending" };
-        addBook(newBook);
-        goToBook(newBook);
+        setLoading(true);
+        const newId = await addBook(newBook);
+        setLoading(false);
+        goToBook({ ...newBook, id: newId });
     };
     const handleConfirm = () => {
         deleteBook(book.id);
@@ -43,7 +47,7 @@ function BookSettings({ book }) {
             <IconButton onClick={goToBooks} style={{ padding: 6 }}>
                 <ArrowBackRoundedIcon style={{ color: "#fff" }} />
             </IconButton>
-            {!book.status && (
+            {!book.status && !loading && (
                 <Button
                     variant="contained"
                     disableElevation
@@ -53,6 +57,9 @@ function BookSettings({ book }) {
                 >
                     Add To Library
                 </Button>
+            )}
+            {loading && (
+                <CircularProgress style={{ height: 35, width: 35, color: "#fff" }} />
             )}
             {book.id && (
                 <>
