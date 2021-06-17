@@ -281,6 +281,19 @@ const useStyles = makeStyles(
         bookDesc: {
             padding: 12,
         },
+        exportBtn: {
+            backgroundColor: theme.palette.success.main,
+            position: "absolute",
+            right: 5,
+            "&:focus": {
+                backgroundColor: theme.palette.success.main,
+                color: theme.palette.getContrastText(theme.palette.success.main),
+            },
+            "&:hover": {
+                backgroundColor: theme.palette.success.light,
+                color: theme.palette.getContrastText(theme.palette.success.light),
+            },
+        },
     }),
     { index: 1 }
 );
