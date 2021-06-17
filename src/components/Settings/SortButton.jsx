@@ -13,7 +13,10 @@ import { withStyles } from "@material-ui/core/styles";
 import { BooksContext } from "../../contexts/BooksContext";
 import SortIcon from "@material-ui/icons/Sort";
 
-const StyledMenu = withStyles({})((props) => (
+const StyledMenu = withStyles(
+    {},
+    { index: 1 }
+)((props) => (
     <Menu
         getContentAnchorEl={null}
         anchorOrigin={{

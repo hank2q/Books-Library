@@ -5,14 +5,17 @@ import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import { withStyles } from "@material-ui/core/styles";
 import useStyles from "../../styles";
 
-const DarkTooltip = withStyles((theme) => ({
-    arrow: {
-        color: "#000",
-    },
-    tooltip: {
-        backgroundColor: "#000",
-    },
-}))(Tooltip);
+const DarkTooltip = withStyles(
+    (theme) => ({
+        arrow: {
+            color: "#000",
+        },
+        tooltip: {
+            backgroundColor: "#000",
+        },
+    }),
+    { index: 1 }
+)(Tooltip);
 function ViewButtons({ tableView, toggleTableView }) {
     const classes = useStyles();
 

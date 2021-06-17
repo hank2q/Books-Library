@@ -31,7 +31,7 @@ function App() {
 
     return (
         <div className={classes.root}>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider injectFirst theme={theme}>
                 <PagesProvider>
                     <CssBaseline />
                     <BooksProvider>
