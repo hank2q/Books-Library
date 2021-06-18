@@ -8,7 +8,15 @@ function ExportData({ Data, fileName, className }) {
     const fileExtension = ".xlsx";
 
     const exportToCSV = (Data, fileName) => {
-        const ws = XLSX.utils.json_to_sheet(Data);
+        const modifiedData = Data.map((book) => ({
+            Title: book.title,
+            Author: book.author.join(", "),
+            Publisher: book.publisher,
+            Genre: book.genre.join(", "),
+            Status: book.status,
+            Description: book.description,
+        }));
+        const ws = XLSX.utils.json_to_sheet(modifiedData);
         const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
         const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
         const data = new Blob([excelBuffer], { type: fileType });
