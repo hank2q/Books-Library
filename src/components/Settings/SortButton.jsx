@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import {
     Button,
     Menu,
@@ -48,6 +48,13 @@ function SortButton() {
         setDirection(event.target.value);
     };
     const selectOrder = (index) => {
+        localStorage.setItem(
+            "order",
+            JSON.stringify({
+                catagory: options[index].toLowerCase(),
+                way: direction,
+            })
+        );
         changeOrder(options[index].toLowerCase(), direction);
     };
     const btnIcon = () => {

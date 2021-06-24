@@ -27,7 +27,7 @@ function BooksViews() {
 
     useEffect(() => {
         localStorage.setItem("tableView", JSON.stringify(tableView));
-    });
+    }, [tableView]);
 
     const toggleAddForm = () => {
         setShowAddForm(!showAddForm);
