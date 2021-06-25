@@ -127,6 +127,20 @@ const useStyles = makeStyles(
                 color: theme.palette.getContrastText(theme.palette.primary.light),
             },
         },
+        unfinished: {
+            backgroundColor: theme.palette.error.main,
+            color: theme.palette.getContrastText(theme.palette.error.main),
+        },
+        unfinishedClickable: {
+            "&:focus": {
+                backgroundColor: theme.palette.error.main,
+                color: theme.palette.getContrastText(theme.palette.error.main),
+            },
+            "&:hover": {
+                backgroundColor: theme.palette.error.light,
+                color: theme.palette.getContrastText(theme.palette.error.light),
+            },
+        },
         pending: {
             backgroundColor: theme.palette.grey[300],
             color: theme.palette.getContrastText(theme.palette.grey[300]),

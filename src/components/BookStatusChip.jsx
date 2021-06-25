@@ -32,6 +32,8 @@ function BookStatusChip({ book }) {
                 return base ? classes.reading : classes.readingClickable;
             case 3:
                 return base ? classes.finished : classes.finishedClickable;
+            case 4:
+                return base ? classes.unfinished : classes.unfinishedClickable;
             default:
                 return base ? classes.pending : classes.pendingClickable;
         }

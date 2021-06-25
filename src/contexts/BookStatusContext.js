@@ -6,7 +6,7 @@ export const MenuIndexContext = createContext();
 export const StatusesContext = createContext();
 
 export function BookStatusProvider({ children }) {
-    const statuses = ["Wish List", "Pending", "Reading", "Finished"];
+    const statuses = ["Wish List", "Pending", "Reading", "Finished", "Unfinished"];
     const [anchorBook, setAnchorBook] = useState(null);
     const [anchorEl, setAnchorEl] = useState(null);
     const [menuIndex, setMenuIndex] = useState(0);

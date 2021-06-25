@@ -193,6 +193,7 @@ function EditBook({ open, setOpen, book }) {
                                 <MenuItem value={"Wish List"}>Wish List</MenuItem>
                                 <MenuItem value={"Pending"}>Pending</MenuItem>
                                 <MenuItem value={"Reading"}>Reading</MenuItem>
+                                <MenuItem value={"Unfinished"}>Unfinished</MenuItem>
                                 <MenuItem value={"Finished"}>Finished</MenuItem>
                             </Select>
                         </FormControl>
